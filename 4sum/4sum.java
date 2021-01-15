@@ -35,3 +35,8 @@ class Solution {
                     }
                 }
             }
+        }
+     
+         return list;
+    }
+}
