@@ -1,5 +1,6 @@
 <h1 align="center">Hi 👨‍🎓, I'm Rohit Kumar Singh</h1>
 <h3 align="center">A passionate full stack developer from India</h3>
+<img align="center" src="https://github.com/Rohitkumarsingh369/Leetcode/blob/main/titlepage.png" height="100" width="200"/>
 <h3 align="center">All Leetcode Soluton</h3>
 
 <h3 align="left">Connect with me:</h3>
