@@ -1,4 +1,4 @@
-<h1 align="center">Hi 👋, I'm Rohit Kumar Singh</h1>
+<h1 align="center">Hi 👨‍🎓, I'm Rohit Kumar Singh</h1>
 <h3 align="center">A passionate full stack developer from India</h3>
 <h3 align="center">All Leetcode Soluton</h3>
 
