@@ -1,2 +1,3 @@
 ## Rohit Kumar Singh
-## Leetcode
+## Leetcode all solution
+# Array
