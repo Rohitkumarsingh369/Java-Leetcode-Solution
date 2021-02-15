@@ -1,22 +1,21 @@
 class Solution {
     public int subarraysDivByK(int[] a, int k) {
-        HashMap<Integer,Integer> mp=new HashMap<>();
-        mp.put(0,1);
-        int sum=0,rem=0,ans=0;
-        for(int i=0;i<a.length;i++){
-            sum+=a[i];
-            rem=sum%k;
-            if(rem<0)
-                rem+=k;
-            
-            if(mp.containsKey(rem)){
-                ans+=mp.get(rem);
-                mp.put(rem,mp.get(rem)+1);
-            }
-            else
-                mp.put(rem,1);
-        }
+       int mod[]=new int[k];
+        Arrays.fill(mod,0);
         
-        return ans;
+        int cumsum=0;
+        int n=a.length;
+        for(int i=0;i<n;i++){
+            cumsum+=a[i];
+            mod[((cumsum%k)+k)%k]++;
+        }
+        int result=0;
+        for(int i=0;i<k;i++){
+            if(mod[i]>1)
+            result+=(mod[i]*(mod[i]-1))/2;
+        }
+        result+=mod[0];
+        
+        return result;
     }
 }
