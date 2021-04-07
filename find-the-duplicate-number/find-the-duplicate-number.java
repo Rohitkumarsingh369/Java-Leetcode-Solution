@@ -9,7 +9,7 @@ class Solution {
 			result=(Math.abs(arr[i]));
 			}
 		}
-         return result;
+         return result;    
     }
    
 }
