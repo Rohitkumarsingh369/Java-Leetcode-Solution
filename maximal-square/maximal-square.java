@@ -23,6 +23,8 @@ class Solution {
                   dp[i][j]=Math.min(dp[i][j-1],Math.min(dp[i-1][j-1],dp[i-1][j])) +1;
                     max=Math.max(dp[i][j],max);
                 }
+                else
+                    dp[i][j]=0;
             }
         }
         for(int i=0;i<row;i++){
