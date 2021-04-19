@@ -1,3 +1,4 @@
+[Discussion Post (created on 19/3/2021 at 13:23)](https://leetcode.com/problems/combination-sum-iv/discuss/1166120/java-DP-runtime-1ms)  
 <h2>377. Combination Sum IV</h2><h3>Medium</h3><hr><div><p>Given an array of <strong>distinct</strong> integers <code>nums</code> and a target integer <code>target</code>, return <em>the number of possible combinations that add up to</em>&nbsp;<code>target</code>.</p>
 
 <p>The answer is <strong>guaranteed</strong> to fit in a <strong>32-bit</strong> integer.</p>
