@@ -2,7 +2,7 @@
 <h3 align="center">A passionate full stack developer from India</h3>
 <img align="center" src="https://github.com/Rohitkumarsingh369/Leetcode/blob/main/titlepage.png" height="350" width="100%"/>
 <h3 align="center">All Leetcode Soluton</h3>
-
+<p align="left"> <img src="https://komarev.com/ghpvc/?username=rohitkumarsingh369&label=Visit%20&color=0e75b6&style=flat" alt="rohitkumarsingh369" /> </p>
 <h3 align="left">Connect with me:</h3>
 <p align="left">
 <a href="https://www.linkedin.com/in/rohitkumarsingh/" target="blank"><img align="center" src="https://image.flaticon.com/icons/png/512/174/174857.png" alt="https://www.linkedin.com/in/rohitkumarsingh/" height="40" width="40" /></a>
