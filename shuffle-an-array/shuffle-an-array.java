@@ -13,7 +13,20 @@ class Solution {
     
     /** Returns a random shuffling of the array. */
     public int[] shuffle() {
-       // copy the orginal array
+       /* Random r=new Random();
+        
+        int n=nums.length;
+        
+        for(int i=0;i<n;i++){
+            int j=r.nextInt(n);
+            
+            int temp=nums[i];
+            nums[i]=nums[j];
+            nums[j]=temp;
+        }
+        
+        return nums;*/
+        // copy the orginal array
         int[] arr = nums.clone();
         
         Random rnd = new Random();
