@@ -7,5 +7,5 @@ class Solution {
     for (int i = 0; i < r * c; i++)
         reshaped[i/c][i%c] = nums[i/n][i%n];
     return reshaped;
-}
+ }
 }
