@@ -7,16 +7,12 @@ class Solution {
             pq.add(piles[i]);
            
         }
-        
-       
+              
         for(int i=0;i<k;i++){
             int temp=pq.poll();
-            int res=temp-(int)Math.floor(temp/2);
-           // System.out.print(res+" ");
+            int res=temp-(temp/2);
             pq.add(res);
         }
-        
-        
         
         int result=0;
         for(int i=0;i<piles.length;i++){
