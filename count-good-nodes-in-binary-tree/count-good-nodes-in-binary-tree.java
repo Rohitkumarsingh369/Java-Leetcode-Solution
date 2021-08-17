@@ -16,13 +16,13 @@
 class Solution {
     int count=0;
     public int goodNodes(TreeNode root) {
-       
-       
-        return goodnodes(root,Integer.MIN_VALUE);
+        
+         goodnodes(root,Integer.MIN_VALUE);
+        return count;
     }
-    public int goodnodes(TreeNode root,int max){
+    public void goodnodes(TreeNode root,int max){
         if(root==null)
-            return 0;
+            return ;
         
         if(root.val>=max)
         {
@@ -33,6 +33,6 @@ class Solution {
         goodnodes(root.left,max);
         goodnodes(root.right,max);
         
-        return count;
+       // return count;
     }
 }
