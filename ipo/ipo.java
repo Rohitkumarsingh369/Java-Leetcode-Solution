@@ -6,6 +6,10 @@ class Solution {
         for (int i = 0; i < Profits.length; i++) {
             pqCap.add(new int[] {Capital[i], Profits[i]});
         }
+       /* for (int i = 0; i < Profits.length; i++) {
+            System.out.println(pqCap.peek()[0]+" "+pqCap.peek()[1]);
+            pqCap.poll();
+        }*/
         
         for (int i = 0; i < k; i++) {
             while (!pqCap.isEmpty() && pqCap.peek()[0] <= W) {
@@ -16,6 +20,7 @@ class Solution {
             
             W += pqPro.poll()[1];
         }
+        
         
         return W;
     }
