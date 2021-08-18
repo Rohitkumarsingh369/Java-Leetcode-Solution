@@ -1,7 +1,7 @@
 class Solution {
     public int numDecodings(String str) {
         int n=str.length();
-        int mod=1000000007;
+       
         int count[]=new int[n+1];
         
         count[0]=1;
