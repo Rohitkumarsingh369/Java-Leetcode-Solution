@@ -1,3 +1,4 @@
+[Discussion Post (created on 1/8/2021 at 13:0)](https://leetcode.com/problems/array-nesting/discuss/1438179/Java-Simple-to-Understand)  
 <h2>565. Array Nesting</h2><h3>Medium</h3><hr><div><p>You are given an integer array <code>nums</code> of length <code>n</code> where <code>nums</code> is a permutation of the numbers in the range <code>[0, n - 1]</code>.</p>
 
 <p>You should build a set <code>s[k] = {nums[k], nums[nums[k]], nums[nums[nums[k]]], ... }</code> subjected to the following rule:</p>
