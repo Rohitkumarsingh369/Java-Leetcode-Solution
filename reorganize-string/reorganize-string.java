@@ -3,9 +3,12 @@ class Solution {
         HashMap<Character,Integer> map=new HashMap(); // to store the frequency of each element
         for(char c:s.toCharArray())
             map.put(c,map.getOrDefault(c,0)+1);
+        
         PriorityQueue<Character> qq=new PriorityQueue((n1,n2) -> map.get(n2)-map.get(n1));
         qq.addAll(map.keySet()); // adding all characters to heap
+        
         StringBuilder sb=new StringBuilder(); // create a new string
+        
       while(qq.size()>1){
           char c1=qq.remove(); // remove the most frequent element
           char c2=qq.remove(); // remove the 2nd most frequent element
