@@ -14,7 +14,7 @@ class Solution {
                     result=keysPressed.charAt(i);
             }
         }
-        System.out.println(result);
+       
         return result;
     }
 }
