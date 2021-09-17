@@ -1,31 +1,29 @@
-class Solution{
-public int[] findPeakGrid(int[][] mat) {
-    int n = mat.length;
-    int m = mat[0].length;
-
-    for(int i = 0; i < n; i++){
-        int start = 0;
-        int end = m;
+class Solution {
+    public int[] findPeakGrid(int[][] mat) {
+        int i = 0, j = 0;
         
-        while(start <= end){
-            int mid = start + (end - start)/2;
-            int num = mat[i][mid];
-            int top = i == 0 ? -1 : mat[i-1][mid];
-            int bottom = i == n-1 ? -1 : mat[i+1][mid];
-            int left = mid == 0 ? -1 : mat[i][mid - 1];
-            int right = mid == m-1 ? -1 : mat[i][mid + 1];
+        while(true){
             
-            if(num > top && num > bottom && num > left && num > right){
-                return new int[]{i, mid};
-            }else if(num < right){
-                start = mid + 1;
-            }else{
-                end = mid - 1;
+            int current = mat[i][j];
+            
+            int up = i != 0 ? mat[i-1][j] : 0;
+            int down = i != mat.length - 1 ? mat[i+1][j] : 0;
+            int left =  j != 0 ? mat[i][j-1] : 0;
+            int right = j != mat[0].length - 1 ? mat[i][j+1] : 0;
+            
+            if(up > current){
+                i = i-1;
+            }else if(down > current) {
+                i = i+1;
+            }else if(right > current) {
+                j = j+1;
+            }else if(left > current) {
+                j = j -1;
+            }else {
+                return new int[] {i,j};
             }
+            
         }
+        
     }
-    
-    return new int[]{-1, -1};
-    
-}
 }
