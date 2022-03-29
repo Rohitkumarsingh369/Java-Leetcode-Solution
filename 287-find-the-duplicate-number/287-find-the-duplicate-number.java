@@ -21,5 +21,4 @@ class Solution {
 
         return low;
     }
-   
 }
