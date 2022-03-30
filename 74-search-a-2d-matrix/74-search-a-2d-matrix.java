@@ -12,7 +12,7 @@ class Solution {
                 if(mat[i][mid]==target)
                     return true;
                 
-                if(mat[i][mid]<target)
+                else if(mat[i][mid]<target)
                     left=mid+1;
                 
                 else
