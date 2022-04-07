@@ -22,5 +22,5 @@ class Solution {
     // the number to return is
     // arr[right] + k - (arr[right] - right - 1) = k + left
     return left + k;
-}
+ }
 }
