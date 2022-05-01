@@ -1,15 +1,35 @@
 class Solution {
     public int countSubstrings(String s) {
-        int result = 0;
-		
-        for(int i=0;i<s.length();i++){
-            for(int j=i+1;j<=s.length();j++) {
-            	    if(s.substring(i, j).equalsIgnoreCase(new StringBuilder().append(s.substring(i, j)).reverse().toString())) {
-            		result++;
-            	}
-            }
-        }
+        int n=s.length();
+        int dp[][] = new int[n][n];
+        int count=0;
         
-        return result;
+        for (int l=0;l<n;l++) {
+            
+            for (int i = 0,j=l; j < n; i++,j++) {
+                if(l==0)
+                    dp[i][j] = 1;
+                else if(l==1)
+                {
+                    if(s.charAt(i)==s.charAt(j))
+                        dp[i][j]=1;
+                    else
+                        dp[i][j]=0;
+                }
+                else
+                {
+                     if(s.charAt(i)==s.charAt(j) && dp[i+1][j-1]==1)
+                        dp[i][j]=1;
+                    else
+                        dp[i][j]=0;
+                }
+              if(dp[i][j]==1)
+                  count++;
+            }
+            
+        }
+ 
+        // return total palindromic substrings
+        return count;
     }
 }
