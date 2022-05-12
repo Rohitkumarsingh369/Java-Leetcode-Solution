@@ -1,23 +1,37 @@
 class Solution {
     public int findMinArrowShots(int[][] points) {
-        Arrays.sort( points , (a , b) -> ( Integer.compare(a[0] , b[0] ) ) );
-        int st = points[0][0] , en = points[0][1];
-        int cnt = 1;
-        for(int i=1 ;i < points.length ;i++){
-            
-            if(points[i][0] > en ){
-                
-                cnt++;
-                st  = points[i][0];
-                en  = points[i][1];
+        Arrays.sort(points,
+                    (a, b) -> Integer.compare(a[1], b[1]));
+ 
+        // Initialize end variable with
+        // the end of first balloon
+        int end = points[0][1];
+ 
+        // Initialize arrow with 1
+        int arrow = 1;
+ 
+        // Iterate through the entire
+        // arrow of points
+        for (int i = 1; i < points.length; i++) {
+ 
+            // If the start of ith balloon
+            // <= end than do nothing
+            if (points[i][0] <= end) {
+                continue;
             }
+ 
+            // if start of the next balloon
+            // >= end of the first balloon
+            // then increment the arrow
             else {
-                
-                st = Math.max(st , points[i][0]);
-                en = Math.min(en , points[i][1]);
+ 
+                // Update the new end
+                end = points[i][1];
+                arrow++;
             }
         }
-        
-        return cnt;
+ 
+        // Return the total count of arrows
+        return arrow;
     }
 }
