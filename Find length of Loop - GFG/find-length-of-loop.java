@@ -97,11 +97,13 @@ class Solution
     }
     
     static int countnode(Node head){
-        int length=1;
         Node temp=head;
+        
+        int length=1;
+        
         while(temp.next!=head){
-            length++;
             temp=temp.next;
+            length++;
         }
         
         return length;
