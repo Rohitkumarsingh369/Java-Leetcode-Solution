@@ -1,3 +1,4 @@
+[Discussion Post (created on 22/4/2022 at 18:4)](https://leetcode.com/problems/linked-list-cycle-ii/discuss/2063688/Easy-to-Understand-Java-Linear-Solution)  
 <h2>142. Linked List Cycle II</h2><h3>Medium</h3><hr><div><p>Given a linked list, return the node where the cycle begins. If there is no cycle, return <code>null</code>.</p>
 
 <p>There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the&nbsp;<code>next</code>&nbsp;pointer. Internally, <code>pos</code>&nbsp;is used to denote the index of the node that&nbsp;tail's&nbsp;<code>next</code>&nbsp;pointer is connected to.&nbsp;<strong>Note that&nbsp;<code>pos</code>&nbsp;is not passed as a parameter</strong>.</p>
