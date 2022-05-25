@@ -1,15 +1,14 @@
 class Solution {
-    public String longestCommonPrefix(String[] arr) {
-          // code here
-        int n=arr.length;
-        if(n==0 || arr==null)
+    public String longestCommonPrefix(String[] str) {
+         // code here
+        if(str.length==0 || str==null)
         return "";
         
-        String lcp=arr[0]; //Assuming that the first word is the ans (i.e- geeksforgeeks)
-        for(int i=1;i<n;i++) //starts checking from the 2nd word in the array that's why i=1
+        String lcp=str[0]; //Assuming that the first word is the ans (i.e- leetcode)
+        for(int i=1;i<str.length;i++) //starts checking from the 2nd word in the array that's why i=1
         {
             //will check the length and compare the characters
-            String currword=arr[i]; //Stores the current words(for first it's - geeks)
+            String currword=str[i]; //Stores the current words(for first it's - leetcode)
             int j=0;
             while(j<lcp.length() && j<currword.length() && lcp.charAt(j)==currword.charAt(j))
             {
