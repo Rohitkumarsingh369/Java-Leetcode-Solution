@@ -5,6 +5,17 @@ class Solution {
         // sort by ascending width, and sort by descending height if the width are the same
         Arrays.sort(envelopes, (a,b) -> a[0] == b[0] ? b[1] - a[1] : a[0] - b[0]);
         
+       /* int row=envelopes.length;
+        int col=envelopes[0].length;
+        
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+                System.out.print(envelopes[i][j]+" ");
+            }
+            System.out.println();
+        
+        }*/
+       
         // find LIS on the height array
         int[] height = new int[n];
         for (int i = 0; i < n; i++)
