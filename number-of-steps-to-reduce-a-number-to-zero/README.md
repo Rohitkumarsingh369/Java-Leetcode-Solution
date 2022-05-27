@@ -1,3 +1,4 @@
+[Discussion Post (created on 27/4/2022 at 9:49)](https://leetcode.com/problems/number-of-steps-to-reduce-a-number-to-zero/discuss/2078111/JAVA-100time-oror-0ms-oror-No-recursion-oror-Easy-Solution)  
 <h2>1342. Number of Steps to Reduce a Number to Zero</h2><h3>Easy</h3><hr><div><p>Given a non-negative integer <code>num</code>, return the number of steps to reduce it to zero. If the current number is even, you have to divide it by 2, otherwise, you have to subtract 1 from it.</p>
 
 <p>&nbsp;</p>
