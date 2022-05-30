@@ -15,11 +15,15 @@ class Solution {
     ListNode temp = head;
     ListNode root = head;
     
-    while(temp!=null) { length++; temp=temp.next;}
+    while(temp!=null){ 
+        length++;
+        temp=temp.next;
+    }
     
     
     if(k!=0 && length!=0 && k%length!=0 ) {
         int rotation=(length)-(k>=length?k%length:k);
+        
         ListNode prev=null;
         while(rotation>0) {
             prev=head;
