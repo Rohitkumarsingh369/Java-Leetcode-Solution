@@ -1,6 +1,6 @@
 class Solution {
-    public boolean hasAllCodes(String S, int K) {
-        int len = S.length(), count = 1 << K;
+    public boolean hasAllCodes(String s, int k) {
+       /* int len = S.length(), count = 1 << K;
         if (K > len) return false;
         int num = K > 1 ? Integer.parseInt(S.substring(len - K + 1), 2) << 1 : 0;
         boolean[] seen = new boolean[count];
@@ -13,6 +13,13 @@ class Solution {
             if (count == 0) return true;
             if (i < count) return false;
         }
-        return false;
+        return false;*/
+        // Unordered map of type string
+        Set<String> us= new HashSet<String>();
+        for(int i = 0; i + k <= s.length(); i++)
+        {
+            us.add(s.substring(i, i + k));
+        }
+        return (us.size() == (1 << k));
     }
 }
