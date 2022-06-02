@@ -105,13 +105,12 @@ class Node{
 
 class Solution {
     /*you are required to complete this function */
-    boolean hasPathSum(Node root, int S) {
+    boolean hasPathSum(Node root, int targetSum) {
         if (root == null)
-            return S == 0;
-        if (S < 0)
             return false;
-        if (S == root.data)
-            return (root.left==null && root.right==null);
-        return hasPathSum(root.left, S - root.data) || hasPathSum(root.right, S - root.data);
+        if(root.left == null && root.right == null && targetSum == root.data) 
+            return true;
+        return hasPathSum(root.left, targetSum - root.data)
+            || hasPathSum(root.right, targetSum - root.data);
     }
 }
