@@ -1,37 +1,14 @@
 class Solution {
-    public boolean isRobotBounded(String instructions) {
-        int[][] directions = new int[][]{{0,1},{1,0},{0,-1},{-1,0}};
-        int[] position = new int[]{0,0};
-        int direction = 0; //0 = Up; 1 = Right; 2 = Down; 3 = Left
-          
-            for(Character c: instructions.toCharArray())
-            {
-                
-                if(c=='G')
-                {
-                    position[0]+=directions[direction][0];
-                    position[1]+=directions[direction][1];
-                }
-                else
-                {
-                    if(c=='L')
-                    {
-                        direction = Math.abs((4+direction-1)%4);
-                    }
-                    else
-                    {
-                        direction = (direction+1)%4;
-                    }
-                }
-                
+    public boolean isRobotBounded(String ins) {
+        int x = 0, y = 0, i = 0, d[][] = {{0, 1}, {1, 0}, {0, -1}, { -1, 0}};
+        for (int j = 0; j < ins.length(); ++j)
+            if (ins.charAt(j) == 'R')
+                i = (i + 1) % 4;
+            else if (ins.charAt(j) == 'L')
+                i = (i + 3) % 4;
+            else {
+                x += d[i][0]; y += d[i][1];
             }
-            
-                 
-        if((position[0]==0 && position[1]==0) ||direction!=0)
-        {
-            return true;
-        }
-        
-        return false;
+        return x == 0 && y == 0 || i > 0;
     }
 }
