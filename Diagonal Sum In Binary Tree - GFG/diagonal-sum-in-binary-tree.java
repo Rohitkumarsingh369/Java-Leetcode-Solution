@@ -123,15 +123,10 @@ class Node{
 class Tree {
     public static ArrayList <Integer> diagonalSum(Node root) 
     {
-        // code here.
-        ArrayList<Integer> list=new ArrayList<>();
-        
-        if(root==null)
-            return list;
+        ArrayList<Integer> result=new ArrayList<>();
         Queue<Node> queue=new LinkedList<>();
-        int sum=0;
-        int last=0;
-        int count=0;
+        
+        int sum=0,count=0,last=0;
         
         while(root!=null){
             if(root.left!=null){
@@ -145,16 +140,16 @@ class Tree {
                 if(!queue.isEmpty()){
                     root=queue.poll();
                 }
+                
                 if(last==0){
-                    list.add(sum);
+                    result.add(sum);
                     sum=0;
                     last=count;
                     count=0;
                 }
                 last--;
             }
-    
         }
-        return list;
+        return result;
     }
 }
