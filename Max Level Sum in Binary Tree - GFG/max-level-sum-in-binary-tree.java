@@ -100,7 +100,9 @@ class Node{
     }
 }*/
 class Solution {
+    
     public int maxLevelSum(Node root) {
+       
         Queue<Node> q=new LinkedList<>();
         
         int result=root.data;
@@ -125,4 +127,5 @@ class Solution {
         return result;
         
     }
+    
 }
