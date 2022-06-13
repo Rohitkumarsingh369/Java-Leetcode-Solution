@@ -1,7 +1,6 @@
 class Solution {
     public int findMinArrowShots(int[][] points) {
-        Arrays.sort(points,
-                    (a, b) -> Integer.compare(a[1], b[1]));
+        Arrays.sort(points, (a, b) -> Integer.compare(a[1], b[1]));
  
         // Initialize end variable with
         // the end of first balloon
