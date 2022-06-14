@@ -17,6 +17,7 @@ class Solution {
             while(stack.size()!=0 && stack.peek()>x && lastIndex[stack.peek()]>i){
                 visited[stack.pop()]=false;
             }
+            
             stack.push(x);
             visited[x]=true;
         }
