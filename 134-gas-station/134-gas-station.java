@@ -50,7 +50,7 @@ class Solution {
            
         }
         
-        return total<0?-1:start;
+        return total>=0?start:-1;
         
     }
 }
