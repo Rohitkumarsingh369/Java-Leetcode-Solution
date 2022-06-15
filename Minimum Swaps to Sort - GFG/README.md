@@ -1,5 +1,5 @@
 # Minimum Swaps to Sort
-##  Medium 
+## Medium 
 <div class="problem-statement">
                 <p></p><p><span style="font-size:18px">Given an array of n distinct elements. Find the minimum number of swaps required to sort the array in strictly increasing&nbsp;order.</span></p>
 
