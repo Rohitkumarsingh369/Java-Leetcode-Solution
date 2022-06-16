@@ -1,7 +1,7 @@
-/*class MinStack {
+class MinStack {
 
     Stack<Node> s;
-    class Node{
+    private class Node{
         int val, min;
         Node(int val,int min){
             this.val=val;
@@ -9,7 +9,7 @@
         }
     }
     /** initialize your data structure here. */
-   /* public MinStack() {
+    public MinStack() {
         s=new Stack<>();
     }
     
@@ -33,29 +33,6 @@
     
     public int getMin() {
         return s.peek().min;
-    }
-}*/
-    
- class MinStack {
-    Stack<Integer> stack = new Stack<>();
-    public MinStack() {
-        //does nothing
-    }
-
-    public void push(int val) {
-        stack.push(val);
-    }
-
-    public void pop() {
-        stack.pop();
-    }
-
-    public int top() {
-        return stack.peek();
-    }
-
-    public int getMin() {
-        return Collections.min(stack);
     }
 }
 
