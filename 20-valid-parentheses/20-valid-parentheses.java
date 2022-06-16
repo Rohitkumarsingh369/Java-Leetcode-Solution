@@ -17,17 +17,17 @@ class Solution {
                             check=stack.pop();
                                 if(check=='['|| check=='{')
                                     return false;
-                    break;
+                            break;
                     case'}':
                             check=stack.pop();
                                 if(check=='('|| check=='[')
                                     return false;
-                    break;
+                            break;
                     case']':
                             check=stack.pop();
                                 if(check=='('|| check=='{')
                                     return false;
-                    break;
+                            break;
             }
         }
         return (stack.isEmpty());
