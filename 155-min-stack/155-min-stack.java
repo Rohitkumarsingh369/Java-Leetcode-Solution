@@ -1,38 +1,42 @@
 class MinStack {
 
-    Stack<Node> s;
-    private class Node{
-        int val, min;
-        Node(int val,int min){
-            this.val=val;
-            this.min=min;
-        }
-    }
-    /** initialize your data structure here. */
+    int minelement;
+    Stack<Integer> stack;
     public MinStack() {
-        s=new Stack<>();
+        stack=new Stack<>();
     }
     
-    public void push(int x) {
-        if(s.isEmpty()){
-            s.push(new Node(x,x));
-        }
-        else{
-            int min=Math.min(s.peek().min,x);
-            s.push(new Node(x,min));
-        }
+    public void push(int val) {
+        if(stack.isEmpty())
+            minelement=Integer.MAX_VALUE;
+        
+        if(val<minelement)
+            minelement=val;
+        
+        stack.push(val);
+        stack.push(minelement);
     }
     
     public void pop() {
-        s.pop();
+        stack.pop();
+        stack.pop();
+        
+        if(!stack.isEmpty())
+            minelement=stack.peek();
     }
     
     public int top() {
-        return s.peek().val;
+        int remain=stack.pop();
+        int top=stack.peek();
+        stack.push(remain);
+        return top;
     }
     
     public int getMin() {
-        return s.peek().min;
+    
+        if(stack.isEmpty())
+            return -1;
+        return stack.peek();
     }
 }
 
