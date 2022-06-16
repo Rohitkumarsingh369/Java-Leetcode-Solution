@@ -114,28 +114,25 @@ class Solution{
 
     public int leftLeavesSum(Node root) 
     { 
-       /* Stack<Node> stack=new Stack<>();
-        
-        stack.push(root);
-        
         int sum=0;
-
-        while(!stack.isEmpty()){
-            Node current=stack.pop();
-            
-            if(current.left!=null){
-                stack.push(current.left);
-                
-                if(current.left.left==null && current.left.right==null)
-                    sum+=current.left.data;
-            }
-            if(current.right!=null){
-                stack.push(current.right);
-            }
-        }
-        
-        return sum;*/
-        int result=0;
+       Stack<Node> stack=new Stack<>();
+       stack.push(root);
+       
+       while(!stack.isEmpty()){
+           Node current=stack.pop();
+           
+           if(current.left!=null){
+               stack.push(current.left);
+               if(current.left.left==null & current.left.right==null){
+                   sum+=current.left.data;
+               }
+           }
+           if(current.right!=null)
+            stack.push(current.right);
+       }
+       
+       return sum;
+        /*int result=0;
         
         if(root!=null){
             if(isleaf(root.left)){
@@ -159,6 +156,6 @@ class Solution{
         if(root.left==null && root.right==null)
             return true;
         
-        return false;
+        return false;*/
     }
 }
