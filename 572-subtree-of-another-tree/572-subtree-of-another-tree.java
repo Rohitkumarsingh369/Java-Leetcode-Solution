@@ -14,7 +14,7 @@
  * }
  */
 class Solution {
-    public boolean isSubtree(TreeNode root, TreeNode subRoot) {
+    /*public boolean isSubtree(TreeNode root, TreeNode subRoot) {
    if (root == null) return false;
         if (isSame(root, subRoot)) return true;
         return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
@@ -27,5 +27,26 @@ class Solution {
         if (s.val != t.val) return false;
         
         return isSame(s.left, t.left) && isSame(s.right, t.right);
+    }*/
+    public boolean isSubtree(TreeNode root, TreeNode subRoot){
+        if(root==null)
+            return false;
+        if(issame(root,subRoot))
+            return true;
+        
+        return isSubtree(root.left,subRoot)|| isSubtree(root.right,subRoot);
+    }
+    public boolean issame(TreeNode root1,TreeNode root2){
+        if(root1==null && root2==null)
+            return true;
+        
+         if(root1==null || root2==null)
+            return false;
+        
+        if(root1.val!=root2.val)
+            return false;
+        
+        return issame(root1.left,root2.left) && issame(root1.right,root2.right);
+        
     }
 }
