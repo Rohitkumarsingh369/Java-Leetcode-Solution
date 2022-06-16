@@ -111,9 +111,10 @@ class GFG
 
 class Solution{
 
+
     public int leftLeavesSum(Node root) 
     { 
-        Stack<Node> stack=new Stack<>();
+       /* Stack<Node> stack=new Stack<>();
         
         stack.push(root);
         
@@ -133,7 +134,31 @@ class Solution{
             }
         }
         
-        return sum;
+        return sum;*/
+        int result=0;
+        
+        if(root!=null){
+            if(isleaf(root.left)){
+                result+=root.left.data;
+            }
+            else{
+                result+=leftLeavesSum(root.left);
+            }
+            
+            result+=leftLeavesSum(root.right);
+        }
+        
+        return result;
+        
     } 
-
+    
+    public boolean isleaf(Node root){
+        if(root==null)
+            return false;
+            
+        if(root.left==null && root.right==null)
+            return true;
+        
+        return false;
+    }
 }
