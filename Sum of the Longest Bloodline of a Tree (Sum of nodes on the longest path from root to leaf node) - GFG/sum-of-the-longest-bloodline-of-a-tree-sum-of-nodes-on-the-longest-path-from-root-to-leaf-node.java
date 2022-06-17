@@ -111,31 +111,29 @@ class Node {
 }
 */
 class Solution{
-    int maxlen,maxsum;
+    int maxlength,maxsum;
     public int sumOfLongRootToLeafPath(Node root)
     {
         //code here
-        maxlen=0;
+        maxlength=0;
         maxsum=Integer.MIN_VALUE;
         
         sumOfLongRootToLeafPathutil(root,0,0);
         
         return maxsum;
     }
-    
-    public void sumOfLongRootToLeafPathutil(Node root,int sum,int len){
+    public void sumOfLongRootToLeafPathutil(Node root,int sum,int level){
         if(root==null){
-            if(maxlen<len){
-                maxlen=len;
+            if(maxlength<level){
+                maxlength=level;
                 maxsum=sum;
             }
-            else if(maxlen==len && maxsum<sum){
+            else if(maxlength==level && maxsum<sum){
                 maxsum=sum;
             }
             return;
         }
-        
-        sumOfLongRootToLeafPathutil(root.left,sum+root.data,len+1);
-        sumOfLongRootToLeafPathutil(root.right,sum+root.data,len+1);
+        sumOfLongRootToLeafPathutil(root.left,sum+root.data,level+1);
+        sumOfLongRootToLeafPathutil(root.right,sum+root.data,level+1);
     }
 }
