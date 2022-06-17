@@ -136,19 +136,18 @@ class Tree {
             sum+=root.data;
             root=root.right;
             
-            if(root==null){
-                if(!queue.isEmpty()){
-                    root=queue.poll();
-                }
-                
-                if(last==0){
-                    result.add(sum);
-                    sum=0;
-                    last=count;
-                    count=0;
-                }
-                last--;
+        if(root==null){
+            if(!queue.isEmpty()){
+                root=queue.poll();
             }
+            if(last==0){
+                result.add(sum);
+                sum=0;
+                last=count;
+                count=0;
+            }
+            last--;
+        }
         }
         return result;
     }
