@@ -34,36 +34,40 @@ class Solution
     * ar1 : 1st array
     * ar2 : 2nd array
     */
-    int maxPathSum(int[] arr1, int[] arr2) {
-        int i = 0, j = 0;
-        int m = arr1.length, n = arr2.length;
-        int res = 0, sum1 = 0, sum2 = 0;
-
-        while (i < m && j < n) {
-            if (arr1[i] < arr2[j]) {
-                sum1 += arr1[i++];
-            } else if (arr1[i] > arr2[j]) {
-                sum2 += arr2[j++];
-            } else {
-                res += Math.max(sum1, sum2) + arr1[i];
-
-                sum1 = sum2 = 0;
-
+    int maxPathSum(int ar1[], int ar2[])
+    {
+        // Your code here
+        int length1=ar1.length;
+        int length2=ar2.length;
+        
+        int sum1=0,sum2=0,result=0;
+        
+        int i=0,j=0;
+        
+        while(i<length1 && j<length2){
+            if(ar1[i]<ar2[j])
+                sum1+=ar1[i++];
+            
+            else if(ar1[i]>ar2[j])
+                sum2+=ar2[j++];
+            
+            else{
+                result+=Math.max(sum1,sum2)+ar1[i];
                 i++;
                 j++;
+                sum1=0;
+                sum2=0;
             }
         }
-
-        while (i < m) {
-            sum1 += arr1[i++];
-        }
-
-        while (j < n) {
-            sum2 += arr2[j++];
-        }
-
-        res += Math.max(sum1, sum2);
-
-        return res;
+        
+        while(i<length1)
+            sum1+=ar1[i++];
+            
+        while(j<length2)
+            sum2+=ar2[j++];
+            
+        result+=Math.max(sum1,sum2);
+        
+        return result;
     }
 }
