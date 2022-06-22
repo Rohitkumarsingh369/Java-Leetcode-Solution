@@ -40,7 +40,7 @@ class Solution {
         }
         if(mindist!=Integer.MAX_VALUE)
             return mindist;
-        else
+        
         return -1;
     }
 }
