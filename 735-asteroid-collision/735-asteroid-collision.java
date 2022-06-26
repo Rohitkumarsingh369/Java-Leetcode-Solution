@@ -17,11 +17,11 @@ class Solution {
                 if(s.size()>0 && s.peek()==-ast){
                     s.pop();
                 }
-                else if(s.size()>0 && s.peek()>-ast){
+                else if(s.isEmpty() || s.peek()<0){
                     //do nothing
-                }
-                else
                     s.push(ast);
+                }
+                  
             }
             
         }
