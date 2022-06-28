@@ -58,7 +58,7 @@ class Solution {
         // This is method only submission.
         // You only need to complete the method.
         
-        Node slow=head;
+       /* Node slow=head;
         Node fast=head;
         Node prev=null;
         
@@ -68,6 +68,24 @@ class Solution {
             fast=fast.next.next;
         }
         prev.next=slow.next;
+        
+        return head;*/
+        
+        int count=0;
+        Node mid=head,prev=null,temp=head;
+        
+        while(temp!=null){
+            
+            if(count%2==1){
+                prev=mid;
+                mid=mid.next;
+            }
+            
+            ++count;
+            temp=temp.next;
+        }
+        
+        prev.next=mid.next;
         
         return head;
     }
