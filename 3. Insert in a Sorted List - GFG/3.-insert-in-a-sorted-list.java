@@ -65,19 +65,20 @@ class Solution {
     Node sortedInsert(Node head, int key) {
         // Add your code here.
         
-        Node new_node=new Node(key);
+        //make the node with the value given`
+        /*Node new_node=new Node(key);
         
         Node current;
  
         /* Special case for head node */
-        if (head == null || head.data>= new_node.data) {
+       /* if (head == null || head.data>= new_node.data) {
             new_node.next = head;
             head = new_node;
         }
         else {
  
             /* Locate the node before point of insertion. */
-            current = head;
+           /* current = head;
  
             while (current.next != null&& current.next.data < new_node.data)
                 current = current.next;
@@ -85,6 +86,25 @@ class Solution {
             new_node.next = current.next;
             current.next = new_node;
         }
+        return head;*/
+        
+        Node current;
+        Node newnode=new Node(key);
+        
+        if(head==null || head.data>=newnode.data){
+            newnode.next=head;
+            head=newnode;
+        }
+        else{
+            current=head;
+            while(current.next!=null && current.next.data<newnode.data){
+                current=current.next;
+            }
+            
+            newnode.next=current.next;
+            current.next=newnode;
+        }
+        
         return head;
     }
 }
