@@ -71,14 +71,15 @@ class Solution
     {
         // code here
         Node prev=null,current=head;
-        
         while(current!=null){
             Node next=current.next;
             current.next=prev;
             prev=current;
             current=next;
         }
+        
         head=prev;
+        
         return head;
     }
 }
