@@ -7,9 +7,9 @@ class Solution {
         Arrays.sort(arr, (a,b)->(b+a).compareTo(a+b));
         if(arr[0].equals("0")) return "0";
         
-        for(int i=0;i<arr.length;i++){
+        /*for(int i=0;i<arr.length;i++){
             System.out.println(arr[i]+" ");
-        }
+        }*/
         StringBuilder sb = new StringBuilder();
         for(String val: arr) sb.append(val);
         
