@@ -1,27 +1,29 @@
 class Solution {
-    public int search(int[] nums, int target) {
-        int result=bsearch(nums,0,nums.length-1,target);
-        return result;
-    }
-    static int bsearch(int nums[],int low,int high,int target){
-        if(low>high)
+     public int search(int[] nums, int target) {
+        if(nums.length == 0){
             return -1;
-        int mid=low+(high-low)/2;
-        
-        if(nums[mid]==target)
-            return mid;
-        
-        if(nums[low]<=nums[mid]){
-            
-            if(target>=nums[low]&&target<=nums[mid])
-                return bsearch(nums,low,mid-1,target);
-            
-          return bsearch(nums,mid+1,high,target);  
         }
-        if(target>=nums[mid]&&target<=nums[high])
-                return bsearch(nums,mid+1,high,target);
-            
-          return bsearch(nums,low,mid-1,target);  
         
+        return helper(nums,target,0,nums.length-1);  
+    }
+    
+    public int helper(int[] nums, int tar, int low, int high){
+        if(low > high){
+            return -1;
+        }
+        int mid = low+(high-low)/2;
+        
+        if(nums[mid] == tar){
+            return mid;
+        }
+        
+        int left = helper(nums,tar,low,mid-1);
+        int right = helper(nums, tar, mid+1, high);
+        
+        if(left != -1 || right != -1){
+            return left == -1 ? right : left;
+        }
+        
+        return -1;
     }
 }
