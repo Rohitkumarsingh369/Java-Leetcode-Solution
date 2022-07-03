@@ -1,6 +1,6 @@
 class Solution {
     public boolean isPerfectSquare(int num) {
-        /*if(num==1)
+        if(num==1)
             return true;
         
         int low=1,high=num/2;
@@ -19,12 +19,12 @@ class Solution {
             }
         }
         
-        return false;*/
-        int i = 1;
+        return false;
+       /* int i = 1;
      while (num > 0) {
          num -= i;
          i += 2;
      }
-     return num == 0;
+     return num == 0;*/
     }
 }
