@@ -9,58 +9,38 @@
  */
 public class Codec {
 
-    // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
-        if(root == null) return "";
-        Queue<TreeNode> q = new LinkedList<>();
-        q.add(root);
-        StringBuilder sb = new StringBuilder();
-        // use tree level order traversal to serialize the tree
-        while(!q.isEmpty()) {
-            TreeNode n = q.poll();
-            if(n == null) {
-                sb.append("null ");
-            } else{
-                sb.append(n.val + " ");
-                q.add(n.left);
-                q.add(n.right);
-            }
-        }
-       // System.out.println(sb.toString().trim());
-        return sb.toString().trim();
-    }
+    ArrayList<Integer> result = new ArrayList<Integer>();
+    serializeHelper(root,result);
+    return result.toString();
+}
 
-    // Decodes your encoded data to tree.
-    public TreeNode deserialize(String data) {
-        if(data == "") return null;
-        String[] vals = data.split(" ");
-        if(vals.length == 0) return null;
-        Queue<TreeNode> q = new LinkedList<>();
-        TreeNode root = new TreeNode(Integer.valueOf(vals[0]));
-        q.add(root);
-        TreeNode p = null;
-        String val;
-        for(int i = 1; i < vals.length; ) {
-            p = q.poll();
-            val = vals[i++];
-            if(val.equals("null")) {
-                p.left = null;
-            } else {
-                p.left = new TreeNode(Integer.valueOf(val));
-                q.add(p.left);
-            }
-            if(i < vals.length) {
-                val = vals[i++];
-                if(val.equals("null")) {
-                    p.right = null;
-                } else {
-                    p.right = new TreeNode(Integer.valueOf(val));
-                    q.add(p.right);
-               }
-            }
-        }
-        return root;
+private void serializeHelper(TreeNode root, ArrayList<Integer> result){
+    if (root == null) {
+        result.add(null);
+        return;
     }
+    result.add(root.val);
+    serializeHelper(root.left,result);
+    serializeHelper(root.right,result);
+}
+
+// Decodes your encoded data to tree.
+public TreeNode deserialize(String data) {
+    String[] strArray = data.substring(1,data.length()-1).split(", ");
+    Deque<String> strList = new LinkedList<String>(Arrays.asList(strArray)); 
+    return deserializeHelper(strList);
+}
+
+private TreeNode deserializeHelper(Deque<String> strList){
+    if (strList.size() == 0) return null;
+    String str = strList.pop();
+    if (str.equals("null")) return null;
+    TreeNode currentRoot = new TreeNode(Integer.parseInt(str));
+    currentRoot.left = deserializeHelper(strList);
+    currentRoot.right = deserializeHelper(strList);
+    return currentRoot;
+}
 }
 
 // Your Codec object will be instantiated and called as such:
