@@ -1,23 +1,24 @@
 class Solution {
     public boolean canThreePartsEqualSum(int[] arr) {
         
-        int sum=0;
-        for(int num:arr){
-            sum+=num;
+        int sum = 0, tempSum = 0, count = 0;
+        for (int i: arr) {
+            sum += i;
         }
-        int average=sum/3;
-        
-        int part=0;
-        int count=0;
-        for(int num:arr){
-            part+=num;
-            
-            if(part==average){
-                ++count;
-                part=0;
+        if (sum % 3 != 0) {
+            return false;
+        }
+        for (int i = 0; i < arr.length; i++) {
+            tempSum += arr[i];
+            if (tempSum == sum / 3) {
+                tempSum = 0;
+                count++;
+                if (count == 3) {
+                    break;
+                }
             }
         }
-        
-        return count>=3 && sum%3==0;
+
+        return count == 3;
     }
 }
