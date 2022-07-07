@@ -1,9 +1,9 @@
 class Solution {
-    public int findCenter(int[][] edges) {
+    public int findCenter(int[][] e) {
         //here first is referred to ui of [ui,vi]
    //here second is referred to vi of [ui,vi] 
     
-    int first=edges[0][0];
+   /* int first=edges[0][0];
     int second=edges[0][1];
     
     int first_count=0;
@@ -19,7 +19,8 @@ class Solution {
             
     }
  
-          return first_count>second_count ? first : second;
+          return first_count>second_count ? first : second;*/
+        return e[0][0] == e[1][0] || e[0][0] == e[1][1] ? e[0][0] : e[0][1];
     
     }
     
