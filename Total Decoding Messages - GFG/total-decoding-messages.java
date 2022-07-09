@@ -29,7 +29,7 @@ class Solution
     public int CountWays(String str)
     {
         // code here
-        // code here
+        
         int n=str.length();
         int mod=1000000007;
         int count[]=new int[n+1];
