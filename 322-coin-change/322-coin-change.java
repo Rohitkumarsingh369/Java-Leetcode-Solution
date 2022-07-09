@@ -9,7 +9,7 @@ class Solution {
               for(int coin_denomination : coins){
              //if coin value/denomination is less than or equal to amount     
                   if(coin_denomination <= i){
-                  dp[i] = Math.min(dp[i], dp[i - coin_denomination] + 1);
+                  dp[i] = Math.min(dp[i], dp[i - coin_denomination]+1);
                   }
               }
           }
