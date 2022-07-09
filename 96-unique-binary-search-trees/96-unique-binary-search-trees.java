@@ -6,6 +6,7 @@ class Solution {
             for(int j=0;j<i;j++){
                 a[i]+=a[j]*a[i-j-1];
             }
+           // System.out.print(a[i]+" ");
         }
         return a[n];
     }
