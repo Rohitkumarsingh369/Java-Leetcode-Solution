@@ -35,7 +35,7 @@ class Solution {
     }*/
      public int maxProduct(int[] nums) {
         
-        if(nums.length==1)
+       /* if(nums.length==1)
             return nums[0];
         int ch1=1,ch2=1,ma=nums[0],mi=nums[0],pro=nums[0];
         for(int i=1;i<nums.length;i++)
@@ -48,6 +48,24 @@ class Solution {
                 ma=Math.max(nums[i],Math.max(ch1,ch2));
                 pro=Math.max(pro,Math.max(ma,mi));
         }
-        return pro;
+        return pro;*/
+         
+         if(nums.length==1)
+            return nums[0];
+         int ch1=1,ch2=1,min=nums[0],max=nums[0],product=nums[0];
+         
+         for(int i=1;i<nums.length;i++){
+             
+             ch1=min*nums[i];
+             ch2=max*nums[i];
+             
+             min=Math.min(nums[i],Math.min(ch1,ch2));
+             max=Math.max(nums[i],Math.max(ch1,ch2));
+             
+             product=Math.max(product,Math.max(max,min));
+         }
+         
+         return product;
     }
+         
 }
