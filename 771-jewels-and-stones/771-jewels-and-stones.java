@@ -1,5 +1,13 @@
 class Solution {
     public int numJewelsInStones(String jewels, String stones) {
-         return stones.replaceAll("[^" + jewels + "]", "").length();
+         int count = 0;
+            for(int i = 0; i<stones.length();i++)
+            {
+            if(jewels.contains(new StringBuilder().append("").append(stones.charAt(i)).toString()))
+            {
+            count++;
+            }
+        }
+        return count;
     }
 }
