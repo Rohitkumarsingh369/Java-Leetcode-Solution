@@ -15,10 +15,24 @@
  */
 class Solution {
     public boolean isValidBST(TreeNode root) {
-        return isbst(root,null,null);
+       //return isbst(root,null,null);
+        if (root == null) return true;
+       Stack<TreeNode> stack = new Stack<>();
+       TreeNode pre = null;
+       while (root != null || !stack.isEmpty()) {
+          while (root != null) {
+             stack.push(root);
+             root = root.left;
+          }
+          root = stack.pop();
+          if(pre != null && root.val <= pre.val) return false;
+          pre = root;
+          root = root.right;
+       }
+       return true;
     }
     
-    public boolean isbst(TreeNode root,TreeNode leftnode,TreeNode rightnode){
+   /* public boolean isbst(TreeNode root,TreeNode leftnode,TreeNode rightnode){
         if(root==null)
             return true;
         
@@ -29,5 +43,5 @@ class Solution {
             return false;
         
         return isbst(root.left,leftnode,root)&& isbst(root.right,root,rightnode);
-    }
+    }*/
 }
