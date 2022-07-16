@@ -22,49 +22,40 @@ class Node {
 */
 
 class Solution {
-    /*public Node connect(Node root) {
+    public Node connect(Node root) {
         if(root == null){
 		return null;
 	}
     
-    Queue<Node> q = new LinkedList<>();
-    
-    q.offer(root);
-    
-    while(!q.isEmpty()){
-        int size = q.size();
+   // initialize queue to hold nodes at same level
+        Queue<Node> q = new LinkedList<>();
+ 
+        q.add(root); // adding nodes to the queue
+ 
+        Node temp = null; // initializing prev to null
+        while (!q.isEmpty()) {
+            int n = q.size();
+            for (int i = 0; i < n; i++) {
+                Node prev = temp;
+                temp = q.poll();
+ 
+                // i > 0 because when i is 0 prev points
+                // the last node of previous level,
+                // so we skip it
+                if (i > 0)
+                    prev.next = temp;
+ 
+                if (temp.left != null)
+                    q.add(temp.left);
+ 
+                if (temp.right != null)
+                    q.add(temp.right);
+            }
+ 
+            // pointing last node of the nth level to null
+            temp.next = null;
+        }
         
-        for(int i=0;i<size;i++){
-            Node tmp = q.poll();
-            
-            if(tmp.left != null){
-                q.offer(tmp.left);
-            }
-            if(tmp.right != null){
-                q.offer(tmp.right);
-            }
-            
-            if (i < size - 1) {
-                tmp.next = q.peek();
-            }
-            else {
-                tmp.next = null;
-            }
-        }    
-    }
-    
-    return root;
-    }*/
-    
-    public Node connect(Node root) {
-        dfs(root, null);        
-        return root;
-    }
-    
-    private void dfs(Node curr, Node next) {
-        if (curr == null) return;
-        curr.next = next;
-        dfs(curr.left, curr.right);
-        dfs(curr.right, curr.next == null ? null : curr.next.left);
+            return root;
     }
 }
