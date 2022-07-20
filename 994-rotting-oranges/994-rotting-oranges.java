@@ -16,12 +16,12 @@ class Solution {
                 if(grid[i][j]==2){
                     queue.offer(new int[]{i,j});
                 }
-                if(grid[i][j]!=0){
+                if(grid[i][j]==1){
                     count_fresh++;
                 }
             }
         }
-        
+        //System.out.println(count_fresh);
         if(count_fresh==0){
             return 0;
         }
@@ -47,6 +47,7 @@ class Solution {
                     
                     grid[x][y]=2;
                     queue.offer(new int[]{x,y});
+                    count_fresh--;
                 }
             }
             if(queue.size()!=0){
@@ -54,6 +55,6 @@ class Solution {
             }
         }
         
-        return count_fresh==count?count_min:-1;
+        return count_fresh==0?count_min:-1;
     }
 }
