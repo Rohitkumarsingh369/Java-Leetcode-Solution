@@ -33,7 +33,7 @@ class Solution {
         
         while(!queue.isEmpty()){
             int size=queue.size();
-            count+=size;
+           // count+=size;
             
             for(int i=0;i<size;i++){
                 int point[]=queue.poll();
