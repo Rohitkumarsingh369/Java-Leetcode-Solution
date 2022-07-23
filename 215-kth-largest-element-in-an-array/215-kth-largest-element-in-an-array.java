@@ -3,16 +3,21 @@ class Solution {
         return findKthLargest(nums, 0, nums.length-1, k-1);  
     }  
   
-    private int findKthLargest(int[] nums, int l, int h, int k) {  
-        if(k<l || k>h) return -1;  
-        int p = partition(nums, l, h);  
-        if(p == k) {  
-            return nums[p];  
-        } else if(p > k) {  
-            return findKthLargest(nums, l, p-1, k);  
-        } else {  
-            return findKthLargest(nums, p+1, h, k);  
-        }  
+    private int findKthLargest(int[] nums, int left, int right, int k) {  
+        if(k<left || k>right) return -1; 
+        while(true){
+            int index = partition(nums, left, right);  
+            if(index == k) {  
+                return nums[index]; 
+            }
+            if(index>k){
+                right=index-1;
+            }
+            else{
+                left=index+1;
+            }
+        }
+         
     }  
 
     private int partition(int[] nums, int l, int h) { 
