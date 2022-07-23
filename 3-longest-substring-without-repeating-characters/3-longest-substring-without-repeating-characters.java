@@ -7,6 +7,7 @@ class Solution {
         
         for(int right=0;right<length;right++){
             left=Math.max(left,lastindex[s.charAt(right)]+1);
+            
             if(resultlength<(right-left+1)){
                 resultlength=right-left+1;
                 end=right;
