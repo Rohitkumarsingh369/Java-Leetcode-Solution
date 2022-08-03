@@ -1,18 +1,21 @@
-public class MyCalendar {
-    List<int[]> booking;
+class MyCalendar {
+    TreeMap<Integer, Integer> calendar;
 
     MyCalendar() {
-        booking = new ArrayList();
+        calendar = new TreeMap();
     }
 
     public boolean book(int start, int end) {
-        for (int[] temp: booking) {
-            if (temp[0] < end && start < temp[1]) {
-                return false;
-            }
+        Integer startfloor = calendar.floorKey(start);
+          Integer startceil = calendar.ceilingKey(start);
+        //System.out.println(startfloor + " "+ startceil);
+        
+        if ((startfloor == null || calendar.get(startfloor) <= start) &&
+                (startceil == null || end <= startceil)) {
+            calendar.put(start, end);
+            return true;
         }
-        booking.add(new int[]{start, end});
-        return true;
+        return false;
     }
 }
 
