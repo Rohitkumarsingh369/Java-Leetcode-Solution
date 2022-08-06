@@ -6,7 +6,7 @@ class Solution {
             return -1;
         int n=bloomDay.length,min=bloomDay[0],max=bloomDay[0],result=-1;
         
-        for(int i=0;i<n;i++){
+        for(int i=1;i<n;i++){
             min=Math.min(bloomDay[i],min);
             max=Math.max(bloomDay[i],max);
         }
