@@ -14,20 +14,34 @@ class Solution {
         }
         return max;*/
         
-        int[] tails = new int[nums.length];
-        int size = 0;
-        for (int x : nums) {
-            int i = 0, j = size;
-            while (i != j) {
-                int m = (i + j) / 2;
-                if (tails[m] < x)
-                    i = m + 1;
-                else
-                    j = m;
+        int tailindex[]=new int[nums.length];
+        tailindex[0]=nums[0];
+        int len=1;
+        
+        for(int i=1;i<nums.length;i++){
+            if(nums[i]<tailindex[0]){
+                tailindex[0]=nums[i];
             }
-            tails[i] = x;
-            if (i == size) ++size;
+            else if(nums[i]>tailindex[len-1]){
+                tailindex[len++]=nums[i];
+            }
+            else{
+                tailindex[position(tailindex,-1,len-1,nums[i])]=nums[i];
+            }
         }
-        return size;
+        return len;
     }
+        public int position(int tailindex[],int low,int high,int key){
+            while(high-low>1){
+                int mid=low+(high-low)/2;
+                
+                if(tailindex[mid]>=key){
+                    high=mid;
+                }
+                else{
+                    low=mid;
+                }
+            }
+            return high;
+        }
 }
