@@ -6,16 +6,17 @@ class Solution {
             right+=w;
         }
         while (left < right) {
-            int mid = left+(right-left)/2, need = 1, cur = 0;
+            int mid = left+(right-left)/2, days = 1, cur = 0;
             for (int w: weights) {
                 if (cur + w > mid) {
-                    need += 1;
+                    days += 1;
                     cur = 0;
                 }
                 cur += w;
             }
-            if (need > D) left = mid + 1;
+            if (days > D) left = mid + 1;
             else right = mid;
+            
         }
         return left;
     }
