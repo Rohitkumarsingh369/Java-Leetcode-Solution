@@ -29,6 +29,10 @@ class Solution {
                 tailindex[position(tailindex,-1,len-1,nums[i])]=nums[i];
             }
         }
+        for(int i=0;i<len;i++){
+            System.out.print(tailindex[i]+" ");
+        }
+        System.out.println();
         return len;
     }
         public int position(int tailindex[],int low,int high,int key){
