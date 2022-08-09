@@ -1,44 +1,24 @@
 class Solution {
-    int mod = 1000000007;
-    HashMap<Integer, Long> dp;
-    HashSet<Integer> set;
-    
     public int numFactoredBinaryTrees(int[] arr) {
-        long ans = 0;
-        dp = new HashMap<>();
-        set = new HashSet<>();
         
-        for(int val : arr) set.add(val);
+        Map<Integer, Long> map = new HashMap<>();
+        Arrays.sort(arr); // sort in acsending order
         
-        for(int val : arr) {
-			//giving each unique value a chance to be root node of the tree
-            ans += solve(val, arr);
-            ans %= mod;
+        for (int i = 0; i < arr.length; ++i) {
+            
+            Long cnt = 1L;
+            
+            for (int j = 0; j < i; ++j)
+                if (arr[i] % arr[j] == 0 && map.containsKey(arr[i] / arr[j]))
+                    cnt += map.get(arr[j]) * map.get(arr[i] / arr[j]);
+            
+            map.put(arr[i], cnt);
         }
         
-        return (int)ans;
-    }
-    
-    public long solve(int val, int[] nums) {
+        long res = 0L;
+        for (int n : arr)
+            res = (res + map.get(n)) % ((int) (1e9 + 7));
         
-        if(dp.containsKey(val)) {
-            return dp.get(val);
-        }
-        
-        long ans = 1;
-        
-        for(int i = 0; i < nums.length; i++) {
-            if(val % nums[i] == 0 && set.contains(val / nums[i])) {
-                long left = solve(nums[i], nums);
-                long right = solve(val / nums[i], nums);
-                
-                ans += ((left * right) % mod);
-                ans %= mod;
-            }
-        }
-        
-        dp.put(val, ans);
-        
-        return ans;
+        return (int) res;
     }
 }
