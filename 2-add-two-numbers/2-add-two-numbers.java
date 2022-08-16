@@ -15,7 +15,6 @@ class Solution {
         ListNode temp = new ListNode();
         ListNode head = temp;
         int carry = 0;
-        String str = "";
         while(temp1!=null||temp2!=null||carry!=0)
         {
             int sum = (temp1!=null?temp1.val:0)+(temp2!=null?temp2.val:0)+carry;
