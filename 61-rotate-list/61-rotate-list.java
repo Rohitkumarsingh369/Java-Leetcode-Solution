@@ -21,7 +21,7 @@ class Solution {
         }
 
 
-        if(k!=0 && length!=0 && k%length!=0 ) {
+        if(k!=0 && length!=0  && k%length!=0) {
             int rotation=(length)-(k>=length?k%length:k);
 
             ListNode prev=null;
