@@ -1,6 +1,6 @@
 class Solution {
     int m, n;
-    int[] DIR = new int[]{0, 1, 0, -1, 0};
+    int[] DIR = new int[]{0, 1, 0, -1,0};
     public int maxAreaOfIsland(int[][] grid) {
         m = grid.length;
         n = grid[0].length;
