@@ -1,26 +1,41 @@
 class Solution {
-    public int splitArray(int[] nums, int K) {
-       int[] s = new int[nums.length];
-        s[0] = nums[0];
-        for (int i = 1; i < nums.length; i++) {
-            s[i] = nums[i] + s[i - 1];
+    public int splitArray(int[] nums, int m) {
+        long sum = 0;
+        int max = 0;
+        for(int num: nums){
+            max = Math.max(max, num);
+            sum += num;
         }
-        
-        for (int k = 2; k <= K; k++) {
-            for (int i = nums.length - 1; i >= k - 1; i--) {
-                int min = Integer.MAX_VALUE;
-                int left = nums[i];
-                for (int p = i - 1; p >= k - 2; p--) {
-                    min = Math.min(min, Math.max(s[p], left));
-                    left += nums[p];
-                    if (left >= min) {
-                        break;
-                    }
-                }
-                s[i] = min;
+        return (int)binary(nums, m, sum, max);
+    }
+    
+    private long binary(int[] nums, int m, long high, long low){
+        long mid = 0;
+        while(low < high){
+            mid = (high + low)/2;
+            if(valid(nums, m, mid)){
+                //System.out.println(mid);
+                high = mid;
+            }else{
+                low = mid + 1;
             }
         }
-        
-        return s[nums.length - 1];
+        return high;
+    }
+    
+    private boolean valid(int[] nums, int m, long max){//canSplit
+        int cur = 0;
+        int count = 1;
+        for(int num: nums){
+            cur += num;
+            if(cur > max){
+                cur = num;
+                count++;
+                if(count > m){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
