@@ -1,33 +1,30 @@
 class Solution {
     public int[] plusOne(int[] digits) {
-        
-		// Form the first element (right most element) by summing up with 1
-		// Also take note of the carry for next iteration.
-        int sum = digits[digits.length-1]+1;
-        int carry = sum/10;
-        digits[digits.length-1] = sum % 10;
-
-       //start from digits.length-2 since last position is already handled. 
-	   // Do the same step by calculating the carry  and updating the array.
-        for(int i=digits.length-2;i>=0;i--){
-            sum = digits[i]+carry;
-            digits[i] = sum % 10;
-            carry = sum / 10;
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        if (digits == null || digits.length == 0) {
+            int[] temp = {1};
+            return temp;
         }
-        
-		//This is to cover the edge case where carry exists after whole execution.
-		//Note that we need to expand the array to accomodate this carry
-        if(carry > 0){
-            int[] newDigits = new int[digits.length+1];
-			//simply copy everything from digits array
-            for(int i=digits.length-1; i>=0 ; i--){
-			   // i'th element in digits array would be i+1'th element in new array. 
-                newDigits[i+1] = digits[i];
+         
+        int carry = 0;
+        for (int i = digits.length - 1; i >= 0; i--) {
+            if (i == digits.length - 1) {
+                carry = carry + digits[i] + 1;
+            } else {
+                carry += digits[i];
             }
-			//Just copy the carry to first element.
-            newDigits[0]=carry;
-            digits=newDigits;
+            result.add(0, carry % 10);
+            carry /= 10;
         }
-        return digits;
+         
+        if (carry == 1) {
+            result.add(0, 1);
+        }
+        int resultArray[] = new int[result.size()];
+        for (int i = 0; i < result.size(); i++) {
+            resultArray[i] = result.get(i);
+        }
+         
+        return resultArray;
     }
 }
