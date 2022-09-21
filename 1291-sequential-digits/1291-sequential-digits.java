@@ -8,7 +8,7 @@ class Solution {
         int low_count=String.valueOf(low).length();
         int high_count=String.valueOf(high).length();
         
-        for(int i=low_count;i<=high_count;i++){
+        for(int i=1;i<=9;i++){
             for(int j=0;j<10-i;j++){
                 int num=Integer.parseInt(digit.substring(j,j+i));
                 
