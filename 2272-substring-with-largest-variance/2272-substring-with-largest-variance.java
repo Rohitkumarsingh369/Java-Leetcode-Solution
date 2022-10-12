@@ -1,39 +1,45 @@
 class Solution {
-    public int largestVariance(String s) {
-        
-        int [] freq = new int[26];
-        for(int i = 0 ; i < s.length() ; i++)
-            freq[(int)(s.charAt(i) - 'a')]++;
-        
-        int maxVariance = 0;
-        for(int a = 0 ; a < 26 ; a++){
-            for(int b = 0 ; b < 26 ; b++){
-                int remainingA = freq[a];
-                int remainingB = freq[b];
-                if(a == b || remainingA == 0 || remainingB == 0) continue;
-                
-				// run kadanes on each possible character pairs (A & B)
-                int currBFreq = 0, currAFreq = 0;
-                for(int i = 0 ; i < s.length() ; i++){
-                    int c =  (int)(s.charAt(i) - 'a');
-                    
-                    if(c == b) currBFreq++;
-                    if(c == a) {
-                        currAFreq++;
-                        remainingA--;
-                    }
-                    
-                    if(currAFreq > 0)
-                        maxVariance = Math.max(maxVariance, currBFreq - currAFreq);
-                    
-                    if(currBFreq < currAFreq &&  remainingA >= 1){
-                        currBFreq = 0;
-                        currAFreq = 0;
-                    }
-                }
-            }
-        }
-        
-        return maxVariance;
+  public int largestVariance(String s) {
+    int ans = 0;
+
+    for (char c1 = 'a'; c1 <= 'z'; ++c1)
+      for (char c2 = 'a'; c2 <= 'z'; ++c2)
+        if (c1 != c2)
+          ans = Math.max(ans, kadane(s, c1, c2));
+
+    return ans;
+  }
+
+  // A := the char w/ higher freq
+  // B := the char w/ lower freq
+  private int kadane(final String s, char a, char b) {
+    int ans = 0;
+    int countA = 0;
+    int countB = 0;
+    boolean canExtendPrevB = false;
+
+    for (final char c : s.toCharArray()) {
+      if (c != a && c != b)
+        continue;
+      if (c == a)
+        ++countA;
+      else
+        ++countB;
+      if (countB > 0) {
+        // An interval should contain at least one b
+        ans = Math.max(ans, countA - countB);
+      } else if (countB == 0 && canExtendPrevB) {
+        // Edge case: consider previous b
+        ans = Math.max(ans, countA - 1);
+      }
+      // Reset if # of b > # of a
+      if (countB > countA) {
+        countA = 0;
+        countB = 0;
+        canExtendPrevB = true;
+      }
     }
+
+    return ans;
+  }
 }
