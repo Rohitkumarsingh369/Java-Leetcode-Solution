@@ -1,28 +1,17 @@
-class Solution {
+public class Solution {
     public int[] findErrorNums(int[] nums) {
-        int i = 0;
-        int[] ans = new int[2];
-        while( i < nums.length ) {
-            int correct = nums[i] - 1;
-            if( nums[i] != nums[correct] ){
-                swap(nums, i, correct);
-            }
-            else {
-                i++;
-            }
+        Map < Integer, Integer > map = new HashMap();
+        int dup = -1, missing = 1;
+        for (int n: nums) {
+            map.put(n, map.getOrDefault(n, 0) + 1);
         }
-        for(int k = 0; k < nums.length; k++){
-            if(nums[k] != k + 1){
-            ans[1] = k + 1;
-                ans[0] = nums[k];
-             //   break;
-            }
+        for (int i = 1; i <= nums.length; i++) {
+            if (map.containsKey(i)) {
+                if (map.get(i) == 2)
+                    dup = i;
+            } else
+                missing = i;
         }
-         return ans;
-    }
-    public void swap(int[] nums, int first, int second){
-        int temp = nums[first];
-        nums[first] = nums[second];
-        nums[second] = temp;
+        return new int[]{dup, missing};
     }
 }
