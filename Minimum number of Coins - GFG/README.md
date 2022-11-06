@@ -1,8 +1,7 @@
 # Minimum number of Coins
-## Easy 
-<div class="problem-statement">
-                <p></p><p><span style="font-size:18px">Given an infinite supply of each denomination of Indian currency&nbsp;{ 1, 2, 5, 10, 20, 50, 100, 200, 500, 2000 } and a target value N.<br>
-Find the minimum number of coins and/or notes needed to make the change for Rs N.</span></p>
+## Medium
+<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given an <strong>infinite supply</strong> of each denomination of Indian currency&nbsp;{ <strong>1, 2, 5, 10, 20, 50, 100, 200, 500, 2000</strong> } and a target value <strong>N</strong>.<br>
+Find the <strong>minimum</strong> number of coins and/or notes needed to make the change for Rs <strong>N</strong>. You must return the list containing the value&nbsp;of coins required.&nbsp;</span></p>
 
 <p><br>
 <strong><span style="font-size:18px">Example 1:</span></strong></p>
@@ -34,5 +33,4 @@ You do not need to read input or print anything. Your task is to complete the fu
 <p><br>
 <span style="font-size:18px"><strong>Constraints:</strong><br>
 1 ≤ N ≤ 10<sup>6</sup></span></p>
- <p></p>
-            </div>
+</div>
