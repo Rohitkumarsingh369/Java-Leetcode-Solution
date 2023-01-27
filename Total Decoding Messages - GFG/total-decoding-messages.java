@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 //Initial Template for Java
 
 import java.util.*;
@@ -9,17 +9,24 @@ class GFG
     public static void main(String[] args) throws IOException
     {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        PrintWriter out=new PrintWriter(System.out);
         int T = Integer.parseInt(br.readLine().trim());
         while(T-->0)
         {
             String str = br.readLine().trim();
             Solution ob = new Solution();
             int ans = ob.CountWays(str);
-            System.out.println(ans);
+            out.println(ans);
         }
+        out.close();
     }
 }
+
 // } Driver Code Ends
+
+
+//User function Template for Java
+
 
 
 //User function Template for Java
