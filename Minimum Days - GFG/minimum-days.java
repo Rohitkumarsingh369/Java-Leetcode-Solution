@@ -63,7 +63,7 @@ class GFG {
 
 
 class Solution {
-    public static int getMinimumDays(int n, String s, int[] p) 
+   public static int getMinimumDays(int n, String s, int[] p) 
     {
         Map<Integer, Integer> map = new HashMap<>();
         
