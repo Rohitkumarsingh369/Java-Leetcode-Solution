@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 import java.util.LinkedList;
 import java.util.Queue;
 import java.io.*;
@@ -86,7 +86,8 @@ class Main {
             System.out.println(g.maxLevelSum(root));
         }
     }
-}// } Driver Code Ends
+}
+// } Driver Code Ends
 
 
 /*Complete the finction below
@@ -100,32 +101,36 @@ class Node{
     }
 }*/
 class Solution {
-    
     public int maxLevelSum(Node root) {
-       
-        Queue<Node> q=new LinkedList<>();
-        
-        int result=root.data;
-        
-        q.add(root);
-        
-        while(!q.isEmpty()){
-            int size=q.size();
-            int sum=0;
-            for(int i=0;i<size;i++){
-                Node temp=q.poll();
-                sum+=temp.data;
-                
-                if(temp.left!=null)
-                    q.add(temp.left);
-                    
-                if(temp.right!=null)
-                    q.add(temp.right);
-            }
-            result=Math.max(result,sum);
+        // add code here.
+        if (root == null) {
+            return 0;
         }
-        return result;
-        
+
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        int maxLevelSum = Integer.MIN_VALUE;
+
+        while (!queue.isEmpty()) {
+            int levelSum = 0;
+            int levelSize = queue.size();
+
+            for (int i = 0; i < levelSize; i++) {
+                Node node = queue.remove();
+                levelSum += node.data;
+
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+            }
+
+            maxLevelSum = Math.max(maxLevelSum, levelSum);
+        }
+
+        return maxLevelSum;
     }
-    
 }
