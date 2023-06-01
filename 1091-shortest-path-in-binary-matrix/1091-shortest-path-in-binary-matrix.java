@@ -1,4 +1,4 @@
-class Matrix{
+/*class Matrix{
     int r;
     int c;
     Matrix(int r,int c){
@@ -39,4 +39,54 @@ class Solution {
         }
         return visited[grid.length-1][grid[0].length-1];
     }
+}*/
+class Matrix{
+    int row;
+    int col;
+    
+    Matrix(int row,int col){
+        this.row=row;
+        this.col=col;
+    }
+}
+class Solution{
+     public int shortestPathBinaryMatrix(int[][] grid){
+         int rowLength=grid.length;
+         int colLength=grid[0].length;
+         
+         if(rowLength==0 || colLength==0)
+             return -1;
+         
+            int visited[][]=new int[rowLength][colLength];
+             for (int[] row : visited) 
+                Arrays.fill(row, -1);
+         
+            Queue<Matrix> queue=new LinkedList<Matrix>();
+            if(grid[0][0]==0){
+                queue.add(new Matrix(0,0));
+                visited[0][0]=1;
+            }
+         
+         while(!queue.isEmpty()){
+             Matrix mat=queue.remove();
+             int level=visited[mat.row][mat.col];
+             
+             int tempRow[]={-1,-1,-1,0,0,1,1,1};
+             int tempCol[]={-1,0,1,-1,1,-1,0,1};
+             
+             for(int i=0;i<8;i++){
+                 int currRow=mat.row+tempRow[i];
+                 int currCol=mat.col+tempCol[i];
+                 
+                 if(currRow>=rowLength || currRow<0 || currCol<0 || currCol>=colLength)
+                     continue;
+                 
+                 if(visited[currRow][currCol]==-1 && grid[currRow][currCol]==0){
+                     visited[currRow][currCol]=level+1;
+                     queue.add(new Matrix(currRow,currCol));
+                 }
+             }
+         }
+         return visited[rowLength-1][colLength-1];
+     }
 }
