@@ -1,7 +1,6 @@
 # Reverse a linked list
-## Easy 
-<div class="problem-statement">
-                <p></p><p><span style="font-size:18px">Given a linked list of <strong>N </strong>nodes. The task is to reverse this list.</span></p>
+## Easy
+<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given a linked list of <strong>N </strong>nodes. The task is to reverse this list.</span></p>
 
 <p><strong><span style="font-size:18px">Example 1:</span></strong></p>
 
@@ -30,5 +29,4 @@ The task is to complete the function <strong>reverseList</strong>() with&nbsp;he
 1 &lt;= N &lt;= 10<sup>4</sup></span></p>
 
 <p>&nbsp;</p>
- <p></p>
-            </div>
+</div>
