@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 import java.util.*;
 import java.io.*;
 
@@ -47,7 +47,8 @@ class GFG{
         }
     } 
 } 
-   // } Driver Code Ends
+   
+// } Driver Code Ends
 
 
 //function Template for Java
@@ -55,7 +56,7 @@ class GFG{
 /* linked list node class:
 
 class Node {
-    int value;
+    int data;
     Node next;
     Node(int value) {
         this.value = value;
@@ -70,17 +71,15 @@ class Solution
     Node reverseList(Node head)
     {
         // code here
-        Node prev=null,curr=head;
+        Node prev=null,current=head;
         
-        while(curr!=null){
-            Node next=curr.next;
-            curr.next=prev;
-            prev=curr;
-            curr=next;
+        while(current!=null){
+            Node nextNode=current.next;
+            current.next=prev;
+            prev=current;
+            current=nextNode;
         }
         
-        head=prev;
-        
-        return head;
+        return prev;
     }
 }
