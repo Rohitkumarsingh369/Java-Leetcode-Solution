@@ -45,6 +45,7 @@ class Solution {
     for(int val : nums) {
         pq.offer(val);
 
+        System.out.println(pq.peek());
         if(pq.size() > k) {
             pq.poll();
         }
