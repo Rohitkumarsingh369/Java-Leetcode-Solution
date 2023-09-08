@@ -1,33 +1,34 @@
 class Solution {
     public String countAndSay(int n) {
         
-        if(n==1)
-            return "1";
+        String str="1";
         
-        if(n==2)
-            return "11";
-      
-        String s="11";
-        
-        for(int i=3;i<=n;i++){
-            int count=1;
-            String temp="";
-            s+='@';
-            int len=s.length();
-            char arr[]=s.toCharArray();
-            
-            for(int j=1;j<len;j++){
-                
-                if(arr[j]!=arr[j-1]){
-                    temp+=count;
-                    temp+=arr[j-1];
-                    count=1;
-                }
-                else
-                    count++;
-            }
-            s=temp;
+        for(int i=2;i<=n;i++){
+            str=countAndAdd(str);
         }
-        return s;
+        
+        return str;
+    }
+    public String countAndAdd(String str){
+        StringBuilder temp=new StringBuilder();
+        
+        char ch=str.charAt(0);
+        int count=1;
+        
+        for(int i=1;i<str.length();i++){
+            if(str.charAt(i)==ch){
+                count++;
+            }
+            else{
+                temp.append(count);
+                temp.append(ch);
+                ch=str.charAt(i);
+                count=1;
+            }
+        }
+         temp.append(count);
+         temp.append(ch);
+        
+        return temp.toString();
     }
 }
