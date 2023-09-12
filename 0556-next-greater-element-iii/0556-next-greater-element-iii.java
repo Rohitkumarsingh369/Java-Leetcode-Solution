@@ -9,7 +9,7 @@ class Solution {
             swap(arr, i++, j--);
     }
     public int nextGreaterElement(int c) {
-        char[] arr = (""+c).toCharArray();
+        char[] arr = Integer.toString(c).toCharArray();
         
         int n = arr.length;
         int i = n-2;
