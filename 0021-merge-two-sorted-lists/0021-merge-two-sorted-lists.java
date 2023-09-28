@@ -10,7 +10,7 @@
  */
 class Solution {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        /*ListNode dummyNode=new ListNode(0);
+        ListNode dummyNode=new ListNode(0);
         
         ListNode tail=dummyNode;
         
@@ -35,9 +35,9 @@ class Solution {
             
             tail=tail.next;
         }
-       return dummyNode.next; */
+       return dummyNode.next; 
         
-        if(list1==null)
+      /*  if(list1==null)
             return list2;
         
         if(list2==null)
@@ -64,6 +64,6 @@ class Solution {
             list1=list2;
             list2=swap;
         }
-        return res;
+        return res;*/
     }
 }
