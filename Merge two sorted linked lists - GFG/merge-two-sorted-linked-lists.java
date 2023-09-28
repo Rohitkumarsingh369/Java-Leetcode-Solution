@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 import java.util.*;
 
 class Node
@@ -70,6 +70,7 @@ class MergeLists
          }
     }
 }
+
 // } Driver Code Ends
 
 
@@ -91,11 +92,8 @@ class LinkedList
     Node sortedMerge(Node head1, Node head2) {
      // This is a "method-only" submission. 
      // You only need to complete this method
-     
-     
-     Node dummynode=new Node(0);
-     
-     Node tail=dummynode;
+     Node dummyNode=new Node(0);
+     Node tail=dummyNode;
      
      while(true){
          if(head1==null){
@@ -118,7 +116,6 @@ class LinkedList
          
          tail=tail.next;
      }
-     
-     return dummynode.next;
+     return dummyNode.next;
    } 
 }
