@@ -14,15 +14,8 @@ class Solution {
         
         ListNode tail=dummyNode;
         
-        while(true){
-            if(list1==null){
-                tail.next=list2;
-                break;
-            }
-            if(list2==null){
-                tail.next=list1;
-                break;
-            }
+        while(list1!=null && list2!=null){
+            
             
             if(list1.val<=list2.val){
                 tail.next=list1;
@@ -35,6 +28,11 @@ class Solution {
             
             tail=tail.next;
         }
+        if(list1==null)
+            tail.next=list2;
+        if(list2==null)
+          tail.next=list1;
+        
        return dummyNode.next; 
         
       /*  if(list1==null)
