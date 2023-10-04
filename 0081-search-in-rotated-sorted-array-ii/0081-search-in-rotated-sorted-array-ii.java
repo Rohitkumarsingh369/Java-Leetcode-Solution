@@ -8,7 +8,10 @@ class Solution {
             if(nums[mid] == target) return true;
 
             // the only difference from the first one, trickly case, just updat left and right
-            if( (nums[left] == nums[mid]) && (nums[right] == nums[mid]) ) {++left; --right;}
+            if( (nums[left] == nums[mid]) && (nums[right] == nums[mid]) ) {
+                ++left; --right;
+               // continue;
+            }
 
             else if(nums[left] <= nums[mid])
             {
