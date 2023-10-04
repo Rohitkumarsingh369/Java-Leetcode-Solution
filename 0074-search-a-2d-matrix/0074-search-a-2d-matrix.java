@@ -7,15 +7,15 @@ class Solution {
             return false;
         }
  
-        int i = row - 1;
-        int j = 0;
+        int tempRow = row - 1;
+        int tempCol= 0;
 
-        while (i >= 0 && j < col) {
-            int num = matrix[i][j];
+        while (tempRow >= 0 && tempCol < col) {
+            int num = matrix[tempRow][tempCol];
             if (num > target) {
-                i--;
+                tempRow--;
             } else if (num < target) {
-                j++;
+                tempCol++;
             } else if (num == target) {
                 return true;
             }
