@@ -1,5 +1,5 @@
 class Solution {
-    public int singleNonDuplicate(int[] nums) {
+    public int singleNonDuplicate(int[] num) {
         
         /*int result=0;
         for(int i=0;i<nums.length;i++){
@@ -7,21 +7,30 @@ class Solution {
         }
         return result;*/
         
-        int low = 0;
-        int high = nums.length-1;
+        int len=num.length;
         
-        while(low < high){
+        if(len==1)
+            return num[0];
+        
+        if(num[0]!=num[1])
+            return num[0];
+        
+        if(num[len-1]!=num[len-2])
+            return num[len-1];
+        
+        int low=1,high=len-2;
+        
+        while(low<=high){
+            int mid=low+(high-low)/2;
             
-            int mid = (low+high)/2;
-            if(nums[mid] == nums[mid^1]){
-                low = mid+1;
-            }
-            else{
-                high = mid;
-            }
+            if(num[mid]!=num[mid+1] && num[mid]!=num[mid-1])
+                return num[mid];
             
-            
+            if((mid%2==1 && num[mid]==num[mid-1])||(mid%2==0 && num[mid]==num[mid+1]))
+                low=mid+1;
+            else
+                high=mid-1;
         }
-        return nums[low];
+        return -1;   
     }
 }
