@@ -17,14 +17,14 @@ class Solution {
     }
     public int count(int[][] arr, int k){
         int c=0;
-        int row = 0;
-        int col = arr.length-1;
-        while(row <arr.length && col>=0){
+        int row = arr.length-1;
+        int col = 0;
+        while(row >=0 && col<arr.length){
             if(arr[row][col] <= k){
-                c+=col+1;
-                row++;
+                c+=row+1;
+                col++;
             }else{
-                col--;
+                row--;
             }
         }
         return c;
