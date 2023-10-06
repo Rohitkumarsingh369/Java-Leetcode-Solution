@@ -28,7 +28,7 @@ class Solution {
                 return (Rdepth+1);
         }*/
         
-        if(root==null)
+        /*if(root==null)
             return 0;
         
         else{
@@ -39,6 +39,15 @@ class Solution {
                 return leftdepth+1;
             else 
                 return rightdepth+1;
+        }*/
+        
+        if(root==null)
+            return 0;
+        else{
+            int leftDepth=maxDepth(root.left);
+            int rightDepth=maxDepth(root.right);
+            
+            return 1+ Math.max(leftDepth,rightDepth);
         }
         
     }
