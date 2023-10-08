@@ -14,36 +14,32 @@
  * }
  */
 class Solution {
-     int count=0;
+     int count = 0;
+    int result = 0;
+
     public int kthSmallest(TreeNode root, int k) {
-        TreeNode result=kthsmallest(root,k);
-        
-        if(result!=null)
-            return result.val;
-        
-        return -1;
+        inOrderTraversal(root, k);
+        return result;
     }
-    
-     public TreeNode kthsmallest(TreeNode root, int k)
-    {
-        // base case
-        if (root == null)
-            return null;
-      
-        // search in left subtree
-        TreeNode left = kthsmallest(root.left, k);
-      
-        if(left!=null)
-            return left;
-      
-        // if current element is k'th smallest, return it
+
+    private void inOrderTraversal(TreeNode node, int k) {
+        if (node == null) {
+            return;
+        }
+
+        // Traverse the left subtree
+        inOrderTraversal(node.left, k);
+
+        // Increment count for the current node
         count++;
-        if (count == k)
-            return root;
-      
-        // else search in right subtree
-        return kthsmallest(root.right, k);
+
+        // If we have reached the Kth smallest element, set the result
+        if (count == k) {
+            result = node.val;
+            return;
+        }
+
+        // Traverse the right subtree
+        inOrderTraversal(node.right, k);
     }
-    
-   
 }
