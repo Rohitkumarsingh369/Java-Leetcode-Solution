@@ -1,7 +1,7 @@
-//Runtime: 0 ms, faster than 100.00% of Java online submissions for Unique Paths II.
+
 class Solution {
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
-       /* int m=obstacleGrid.length;
+      /*  int m=obstacleGrid.length;
         if(m==0)
             return 0;
         int n=obstacleGrid[0].length;
@@ -39,6 +39,7 @@ class Solution {
         }
         
        return  dp[m-1][n-1];*/
+        
         int row = obstacleGrid.length;
         if (row == 0) return 0;
         int col = obstacleGrid[0].length;
@@ -63,5 +64,6 @@ class Solution {
         }
         
         return dp[col - 1];
+        
     }
 }
