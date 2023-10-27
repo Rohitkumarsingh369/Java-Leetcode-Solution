@@ -14,26 +14,24 @@ public class Solution {
         if(head==null || head.next==null)
             return null;
         
-        ListNode fast=head;
-        ListNode slow=head;
+        ListNode slow=head,fast=head;
         
         while(fast!=null && fast.next!=null){
             slow=slow.next;
             fast=fast.next.next;
-            
-            if(slow==fast)
-                break;
+            if(slow==fast){
+                return startLoopPoint(slow,head);
+            }
         }
+        return null;
+    }
+    private ListNode startLoopPoint(ListNode node,ListNode head){
+        ListNode temp=head;
         
-        if(slow!=fast)
-            return null;
-        
-        slow=head;
-        while(slow!=fast){
-            slow=slow.next;
-            fast=fast.next;
+        while(temp!=node){
+            temp=temp.next;
+            node=node.next;
         }
-        
-        return slow;
+        return temp;
     }
 }
