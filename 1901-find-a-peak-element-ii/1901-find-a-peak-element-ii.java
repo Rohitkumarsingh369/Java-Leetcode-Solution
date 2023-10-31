@@ -1,6 +1,6 @@
 class Solution {
     public int[] findPeakGrid(int[][] mat) {
-        int m = mat.length;
+       /* int m = mat.length;
     int n = mat[0].length;
     
     int left = 0, right = m - 1;
@@ -31,6 +31,28 @@ class Solution {
         }
     }
 
-    return null; // No peak found (this should not happen given the constraints)
+    return null; // No peak found (this should not happen given the constraints)*/
+        int row = 0, col = 0;
+while (true) {
+    int current = mat[row][col];
+    
+    int up = row != 0 ? mat[row - 1][col] : 0;
+    int down = row != mat.length - 1 ? mat[row + 1][col] : 0;
+    int left = col != 0 ? mat[row][col - 1] : 0;
+    int right = col != mat[0].length - 1 ? mat[row][col + 1] : 0;
+
+    if (up > current) {
+        row = row - 1;
+    } else if (down > current) {
+        row = row + 1;
+    } else if (right > current) {
+        col = col + 1;
+    } else if (left > current) {
+        col = col - 1;
+    } else {
+        return new int[] { row, col };
+    }
+}
+
     }
 }
