@@ -25,11 +25,12 @@ class Solution {
         while(!stack.isEmpty()){
             TreeNode current=stack.pop();
             
-            if(current.left!=null){
-                stack.push(current.left);
-                
+            if(current.left!=null){        
                 if(current.left.left==null && current.left.right==null)
                     sum+=current.left.val;
+                
+                else
+                    stack.push(current.left);
             }
             if(current.right!=null){
                 stack.push(current.right);
