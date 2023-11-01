@@ -44,13 +44,10 @@ class Solution {
         }
         return minDepth;*/
         
-        if(root==null)
-            return 0;
-        
-        int leftSubtree=minDepth(root.left);
-        int rightSubtree=minDepth(root.right);
-        
-        return (root.left==null || root.right==null)?leftSubtree+rightSubtree+1:1+Math.min(leftSubtree,rightSubtree);
+        if(root == null) return 0;
+        int left = minDepth(root.left);
+        int right = minDepth(root.right);
+        return (left == 0 || right == 0) ? left + right + 1: Math.min(left,right) + 1;
     }
     
 }
