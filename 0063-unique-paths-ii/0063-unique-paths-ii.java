@@ -1,25 +1,22 @@
 
 class Solution {
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
-      /*  int m=obstacleGrid.length;
+        int m=obstacleGrid.length;
         if(m==0)
             return 0;
         int n=obstacleGrid[0].length;
         int dp[][]=new int[m][n];
         
-        for(int i=0;i<n;i++)//fill first row with 1
+         // Initialize the first value of dp
+        dp[0][0] = (obstacleGrid[0][0] == 0) ? 1 : 0;
+        
+        for(int i=1;i<n;i++)//fill first row with 1
         {
-           if( obstacleGrid[0][i]!=1)
-                dp[0][i]=1;
-            else
-                break;
+           dp[0][i] = (obstacleGrid[0][i] == 0) ? dp[0][i-1] : 0;
         }
-        for(int i=0;i<m;i++)//fill first column with 1
+        for(int i=1;i<m;i++)//fill first column with 1
         {
-            if( obstacleGrid[i][0]!=1)
-             dp[i][0]=1;
-            else
-                break;
+            dp[i][0] = (obstacleGrid[i][0] == 0) ? dp[i-1][0] : 0;
         }
         
         for(int i=1;i<m;i++){
@@ -30,17 +27,17 @@ class Solution {
             }
         }
         
-        for(int i=0;i<m;i++){
+        /*for(int i=0;i<m;i++){
             for(int j=0;j<n;j++){
                
                     System.out.print(dp[i][j]+" ");
             }
-            System.out.println();
-        }
+            System.out.println();*/
         
-       return  dp[m-1][n-1];*/
         
-        int row = obstacleGrid.length;
+       return  dp[m-1][n-1];
+        
+       /* int row = obstacleGrid.length;
         if (row == 0) return 0;
         int col = obstacleGrid[0].length;
         int[] dp = new int[col]; // One-dimensional array to store DP values
@@ -63,7 +60,7 @@ class Solution {
             }
         }
         
-        return dp[col - 1];
+        return dp[col - 1];*/
         
     }
 }
