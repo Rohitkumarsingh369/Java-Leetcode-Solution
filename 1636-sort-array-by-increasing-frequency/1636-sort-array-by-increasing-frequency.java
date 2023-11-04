@@ -1,4 +1,4 @@
-class Solution {
+/*class Solution {
     public int[] frequencySort(int[] nums) {
         Map<Integer, Integer> map = new HashMap<>();
 	// count frequency of each number
@@ -8,6 +8,27 @@ class Solution {
 			.sorted((a,b) -> map.get(a) != map.get(b) ? map.get(a) - map.get(b) : b - a)
 			.mapToInt(n -> n)
 			.toArray();
+    }
+}*/
+class Solution {
+    public int[] frequencySort(int[] nums) {
+        Map<Integer, Integer> map = new TreeMap<>(Collections.reverseOrder());
+        int index=0;
+        int[] res = new int[nums.length];
+
+        for(int num: nums){
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+
+        List<Map.Entry<Integer, Integer>> list = new ArrayList<>(map.entrySet());
+        list.sort(Map.Entry.comparingByValue());
+
+        for (Map.Entry<Integer, Integer> entry : list) {
+            for(int i=0; i<entry.getValue(); i++){
+                res[index++]=entry.getKey();
+            }
+        }
+        return res;
     }
 }
 /*
