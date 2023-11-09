@@ -1,32 +1,37 @@
 class Solution {
-    public int kthSmallest(int[][] arr, int k) {
-        int n = arr.length;
-        int min = arr[0][0];
-        int max = arr[n-1][n-1];
-        
-        while(min<=max){
-            int mid = min+(max-min)/2;
-            int count = count(arr,mid);
-            if(count<k){
-                min = mid+1;
-            }else{
-                max = mid-1;
+    public int kthSmallest(int[][] matrix, int k) {
+        int n = matrix.length;
+        int left = matrix[0][0];
+        int right = matrix[n - 1][n - 1];
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            int count = countSmaller(matrix, mid);
+
+            if (count < k) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
             }
         }
-        return min;
+
+        return left;
     }
-    public int count(int[][] arr, int k){
-        int c=0;
-        int row = arr.length-1;
+
+    private int countSmaller(int[][] matrix, int target) {
+        int count = 0;
+        int row = matrix.length - 1;
         int col = 0;
-        while(row >=0 && col<arr.length){
-            if(arr[row][col] <= k){
-                c+=row+1;
+
+        while (row >= 0 && col < matrix.length) {
+            if (matrix[row][col] <= target) {
+                count += row + 1;
                 col++;
-            }else{
+            } else {
                 row--;
             }
         }
-        return c;
+
+        return count;
     }
 }
