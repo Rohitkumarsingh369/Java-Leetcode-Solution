@@ -20,24 +20,38 @@
 }*/
 class Solution {
     public int countNodes(TreeNode root) {
-        
-        if(root==null)
+        if (root == null) {
             return 0;
-        int lef=0,rig=0;
-        TreeNode tmp=root;
-        while(tmp.left!=null) {
-		
-            tmp=tmp.left;
-            lef++;
         }
-        tmp=root;
-        while(tmp.right!=null){
-		
-            tmp=tmp.right;
-            rig++;
+
+        int leftHeight = leftHeight(root);
+        int rightHeight = rightHeight(root);
+
+        if (leftHeight == rightHeight) {
+            // The tree is a full binary tree, and the number of nodes can be calculated directly.
+            return (1 << leftHeight) - 1;
+        } else {
+            // The tree is not full, recurse on left and right subtrees.
+            return 1 + countNodes(root.left) + countNodes(root.right);
         }
-        if(lef==rig)
-            return 2*((int)Math.pow(2,lef)-1)+1;
-        return countNodes(root.left)+countNodes(root.right)+1;
     }
+
+    private int leftHeight(TreeNode node) {
+        int height = 0;
+        while (node != null) {
+            height++;
+            node = node.left;
+        }
+        return height;
+    }
+
+    private int rightHeight(TreeNode node) {
+        int height = 0;
+        while (node != null) {
+            height++;
+            node = node.right;
+        }
+        return height;
+    }
+
 }
