@@ -1,23 +1,38 @@
 class Solution {
-    public int shipWithinDays(int[] weights, int D) {
-        int left = 0, right = 0;
-        for (int w: weights) {
-            left = Math.max(left, w);
-            right+=w;
+    public int shipWithinDays(int[] weights, int d) {
+         //Find the maximum and the summation:
+        int low = Integer.MIN_VALUE, high = 0;
+        for (int i = 0; i < weights.length; i++) {
+            high += weights[i];
+            low = Math.max(low, weights[i]);
         }
-        while (left < right) {
-            int mid = left+(right-left)/2, days = 1, cur = 0;
-            for (int w: weights) {
-                if (cur + w > mid) {
-                    days += 1;
-                    cur = 0;
-                }
-                cur += w;
+
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            int numberOfDays = findDays(weights, mid);
+            if (numberOfDays <= d) {
+                //eliminate right half
+                high = mid - 1;
+            } else {
+                //eliminate left half
+                low = mid + 1;
             }
-            if (days > D) left = mid + 1;
-            else right = mid;
-            
         }
-        return left;
+        return low;
+    }
+    public int findDays(int[] weights, int cap) {
+        int days = 1; //First day.
+        int load = 0;
+        int n = weights.length; //size of array.
+        for (int i = 0; i < n; i++) {
+            if (load + weights[i] > cap) {
+                days += 1; //move to next day
+                load = weights[i]; //load the weight.
+            } else {
+                //load the weight on the same day.
+                load += weights[i];
+            }
+        }
+        return days;
     }
 }
