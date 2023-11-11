@@ -26,3 +26,11 @@ class Solution {
     return sb.toString();
     }
 }
+
+/*
+public static String largestNumber(int[] nums) {
+  return Arrays.stream(nums)
+      .mapToObj(p->String.valueOf(p))
+      .sorted((s1, s2)->(s2+s1).compareTo(s1+s2))
+      .collect(Collectors.joining(""));
+}*/
