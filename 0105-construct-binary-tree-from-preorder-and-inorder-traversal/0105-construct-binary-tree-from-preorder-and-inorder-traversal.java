@@ -34,7 +34,7 @@ class Solution {
         
         root.left=helper(prestart+1,instart,inindex-1,preorder,inorder);
         
-        root.right=helper(prestart+inindex-instart+1,inindex+1,inend,preorder,inorder);
+        root.right=helper(prestart+1+inindex-instart,inindex+1,inend,preorder,inorder);
         
         return root;
     }
