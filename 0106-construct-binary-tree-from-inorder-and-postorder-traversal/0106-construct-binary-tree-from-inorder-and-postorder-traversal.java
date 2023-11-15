@@ -21,14 +21,14 @@ class Solution {
 		if(poststart>postend || instart>inend)
 			return null;
 		
-		int d=post[postend];
+		TreeNode root=new TreeNode(post[postend]);
 		
 		int index=0;
 		for(int i=instart;i<=inend;i++) {
-			if(in[i]==d)
+			if(in[i]==root.val)
 				index=i;
 		}
-		TreeNode root=new TreeNode(in[index]);
+		//TreeNode root=new TreeNode(in[index]);
 		/*if(instart==inend)
 			return root;*/
 		
