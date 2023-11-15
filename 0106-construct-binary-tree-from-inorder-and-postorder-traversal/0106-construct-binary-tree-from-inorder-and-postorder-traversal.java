@@ -29,8 +29,8 @@ class Solution {
 				index=i;
 		}
 		TreeNode root=new TreeNode(in[index]);
-		if(instart==inend)
-			return root;
+		/*if(instart==inend)
+			return root;*/
 		
 		root.left=tree(in,instart,index-1,post,poststart,poststart+index-1-instart);
 		root.right=tree(in,index+1,inend,post,poststart+index-instart,postend-1);
