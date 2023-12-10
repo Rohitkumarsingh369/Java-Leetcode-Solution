@@ -25,7 +25,7 @@ class Solution {
             return s.substring(mid - res/2 , mid + res/2 + 1);
             
         }*/
-    public String longestPalindrome(String s) {
+    /*public String longestPalindrome(String s) {
         int maxLen = 1;
         String res = s.substring(0,1);
         int n = s.length();
@@ -48,5 +48,46 @@ class Solution {
             }
         }
         return res;
+    }*/
+    public String longestPalindrome(String s) {
+    int n = s.length();
+    int maxLen = 1;
+    int startIdx = 0;
+
+    // Initialize a 1D array for dynamic programming
+    boolean[] dp = new boolean[n];
+
+    // All substrings of length 1 are palindromes
+    for (int i = 0; i < n; i++) {
+        dp[i] = true;
     }
+
+    for (int start = n - 1; start >= 0; start--) {
+        boolean prev = false;  // Store the value of dp[end-1] before updating dp[end-1]
+
+        for (int end = start + 1; end < n; end++) {
+            boolean temp = dp[end];  // Store the current value of dp[end] before updating
+
+            if (s.charAt(start) == s.charAt(end)) {
+                if (end == start + 1 || prev) {
+                    dp[end] = true;
+                    int currentLen = end - start + 1;
+                    if (currentLen > maxLen) {
+                        maxLen = currentLen;
+                        startIdx = start;
+                    }
+                } else {
+                    dp[end] = false;
+                }
+            } else {
+                dp[end] = false;
+            }
+
+            prev = temp;
+        }
+    }
+
+    return s.substring(startIdx, startIdx + maxLen);
+}
+
 }
