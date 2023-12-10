@@ -10,7 +10,7 @@ class Solution {
         
         public String longestPalindrome(String s) {
             int res = 0;
-            int temp = 0;
+            int temp = 0; 
             int mid = 0;
             for(int i = 0; i < s.length(); i++){
                 temp = 1 + extend(s, i - 1, i + 1);
@@ -26,27 +26,27 @@ class Solution {
             
         }*/
     public String longestPalindrome(String s) {
-    int maxLen = 1;
-    String res = s.substring(0,1);
-    int n = s.length();
-    boolean[][] dp = new boolean[n][n];
-    for(int i = 0; i < n; i++){
-        dp[i][i] = true;
-    }
+        int maxLen = 1;
+        String res = s.substring(0,1);
+        int n = s.length();
+        boolean[][] dp = new boolean[n][n];
+        for(int i = 0; i < n; i++){
+            dp[i][i] = true;
+        }
 
-    for(int start = n; start >= 0; start--){
-        for(int end = start + 1; end < n; end++){
-            if(s.charAt(start) == s.charAt(end)){
-                if(dp[start + 1][end - 1] || end == start + 1){
-                    dp[start][end] = true;
-                    if(maxLen < end - start + 1){
-                        maxLen = end - start + 1;
-                        res = s.substring(start, end + 1);
+        for(int start = n-1; start >= 0; start--){
+            for(int end = start + 1; end < n; end++){
+                if(s.charAt(start) == s.charAt(end)){
+                    if(dp[start + 1][end - 1] || end == start + 1){
+                        dp[start][end] = true;
+                        if(maxLen < end - start + 1){
+                            maxLen = end - start + 1;
+                            res = s.substring(start, end + 1);
+                        }
                     }
                 }
             }
         }
+        return res;
     }
-    return res;
 }
-    }
