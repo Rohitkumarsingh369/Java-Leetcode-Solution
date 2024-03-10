@@ -39,8 +39,7 @@ class Solution {
                         queue.add(node.right);
                     }
                 }
-                
-               
+                 
                 res.add(level);
                 zigzag = !zigzag;
             }
