@@ -33,7 +33,7 @@ class Solution {
         // Return maximum product found in array.
         return maxProduct;
     }*/
-     public int maxProduct(int[] nums) {
+     public int maxProduct(int[] arr) {
         
        /* if(nums.length==1)
             return nums[0];
@@ -50,22 +50,22 @@ class Solution {
         }
         return pro;*/
          
-         if(nums.length==1)
-            return nums[0];
-         int ch1=1,ch2=1,min=nums[0],max=nums[0],product=nums[0];
-         
-         for(int i=1;i<nums.length;i++){
+        int max=Integer.MIN_VALUE;
+         int prefix=1,sufix=1;
+         for(int i=0;i<arr.length;i++){
              
-             ch1=min*nums[i];
-             ch2=max*nums[i];
+             if(prefix==0){
+                 prefix=1;
+             }
              
-             min=Math.min(nums[i],Math.min(ch1,ch2));
-             max=Math.max(nums[i],Math.max(ch1,ch2));
-             
-             product=Math.max(product,Math.max(max,min));
+             if(sufix==0){
+                 sufix=1;
+             }
+             prefix*=arr[i];
+             sufix*=arr[arr.length-1-i];
+             max=Math.max(max,Math.max(prefix,sufix));
          }
-         
-         return product;
+         return max;
     }
          
 }
