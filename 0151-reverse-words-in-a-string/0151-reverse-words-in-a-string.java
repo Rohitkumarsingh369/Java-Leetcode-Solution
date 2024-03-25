@@ -16,7 +16,10 @@ class Solution {
             
         }
         return result.trim();*/
-        StringBuilder result = new StringBuilder();
+        
+        
+        
+       /* StringBuilder result = new StringBuilder();
         int wordEnd = s.length();
         for (int i = s.length() - 1; i >= 0; i--) {
             if (s.charAt(i) == ' ') {
@@ -28,6 +31,17 @@ class Solution {
                 result.append(s, i, wordEnd);
             }
         }
-        return result.toString();
+        return result.toString();*/
+        
+        String result = "";
+        int wordEnd = s.length();
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (s.charAt(i) == ' ') {
+                wordEnd = i;
+            } else if (i == 0 || s.charAt(i - 1) == ' ') {
+                result += (result.isEmpty() ? "" : " ") + s.substring(i, wordEnd);
+            }
+        }
+        return result;
     }
 }
