@@ -15,7 +15,8 @@ class Solution {
             int right=nums.length-1;
             
             while(left<right){
-                if(nums[i]+nums[left]+nums[right]==0){
+                int sum=nums[i]+nums[left]+nums[right];
+                if(sum==0){
                     result.add(Arrays.asList(nums[i],nums[left],nums[right]));
                     
                     while(left+1<right && nums[left]==nums[left+1]){
@@ -30,7 +31,7 @@ class Solution {
                     right--;
                     
                 }
-                else if(nums[i]+nums[left]+nums[right]<0)
+                else if(sum<0)
                     left++;
                 else
                     right--;
