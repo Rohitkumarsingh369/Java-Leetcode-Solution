@@ -1,69 +1,82 @@
 class Solution {
-   /* public int minimumEffortPath(int[][] heights) {
-        
-        int n=heights.length;
-        int m=heights[0].length;
-        
-        if(n==1 && m==1)
-            return 0;
-        
-        int efforts[][]=new int[n][m];//stores the minimum effots required to travel upto a given cell
-        for(int row[]:efforts)
-            Arrays.fill(row,Integer.MAX_VALUE);
-        
-        PriorityQueue<int[]>pq=new PriorityQueue<int[]>((t1,t2)->(t1[2]-t2[2]));//returns cell with minimum efforts
-        
-        pq.offer(new int[]{0,0,0});
-        int dir[][]={{0,1},{0,-1},{1,0},{-1,0}};//direction to travel
-        
-        while(!pq.isEmpty())
-        {
-            int curr[]=pq.poll();
-            int curr_row=curr[0];
-            int curr_col=curr[1];
-            int curr_wt=curr[2];
-            for(int x[]:dir)
-            {
-                int nrow=curr_row+x[0];
-                int ncol=curr_col+x[1];
-                if(nrow<0 || nrow>=n || ncol<0 || ncol>=m)
-                    continue;
-                int wt = Math.max(curr_wt,Math.abs(heights[nrow][ncol]-heights[curr_row][curr_col]));//getting max absolute value
-                //updating the minimum effort
-                if(wt<efforts[nrow][ncol])
-                {
-                    efforts[nrow][ncol]=wt;
-                    pq.offer(new int[]{nrow,ncol,wt});
-                }
-                
+        class Tuple{
+        int distance;
+        int row;
+        int col;
+        public Tuple(int distance,int row, int col){
+            this.row = row;
+            this.distance = distance;
+            this.col = col; 
+        }
+    }
+    public int minimumEffortPath(int[][] heights) {
+        // Create a priority queue containing pairs of cells 
+        // and their respective distance from the source cell in the 
+        // form {diff, {row of cell, col of cell}}.
+        PriorityQueue<Tuple> pq = 
+        new PriorityQueue<Tuple>((x,y) -> x.distance - y.distance);
+       
+      
+        int n = heights.length; 
+        int m = heights[0].length; 
+
+        // Create a distance matrix with initially all the cells marked as
+        // unvisited and the dist for source cell (0,0) as 0.
+        int[][] dist = new int[n][m]; 
+        for(int i = 0;i<n;i++) {
+            for(int j = 0;j<m;j++) {
+                dist[i][j] = (int)(1e9); 
             }
         }
-        return efforts[n-1][m-1]; 
-    }*/
-    public int minimumEffortPath(int[][] heights) {
-        int left = 0, right = (int) 10e6;
-        while (left < right) {
-            int middle = (right + left) / 2;
-            if (dfs(heights, new boolean[heights.length][heights[0].length], 0, 0, heights[0][0], middle))
-                right = middle;
-            else
-                left = middle + 1;
+        
+        dist[0][0] = 0; 
+        pq.add(new Tuple(0, 0, 0)); 
+
+         // The following delta rows and delts columns array are created such that
+        // each index represents each adjacent node that a cell may have 
+        // in a direction.
+        int dr[] = {-1, 0, 1, 0}; 
+        int dc[] = {0, 1, 0, -1}; 
+        
+        // Iterate through the matrix by popping the elements out of the queue
+        // and pushing whenever a shorter distance to a cell is found.
+        while(pq.size() != 0) {
+            Tuple it = pq.peek(); 
+            pq.remove(); 
+            int diff = it.distance; 
+            int row = it.row; 
+            int col = it.col; 
+            
+            // Check if we have reached the destination cell,
+            // return the current value of difference (which will be min).
+            if(row == n-1 && col == m-1) return diff; 
+            // row - 1, col
+            // row, col + 1 
+            // row - 1, col 
+            // row, col - 1
+            for(int i = 0;i<4;i++) {
+                int newr = row + dr[i]; 
+                int newc = col + dc[i];
+
+                // Checking validity of the cell.
+                if(newr>=0 && newc >=0 && newr < n && newc < m) {
+
+                    // Effort can be calculated as the max value of differences 
+                    // between the heights of the node and its adjacent nodes.
+                    int newEffort = 
+                    Math.max(
+                        Math.abs(heights[row][col] - heights[newr][newc]), diff); 
+
+                    // If the calculated effort is less than the prev value
+                    // we update as we need the min effort.
+                    if(newEffort < dist[newr][newc]) {
+                        dist[newr][newc] = newEffort; 
+                        pq.add(new Tuple(newEffort, newr, newc)); 
+                    }
+                }
+            }
         }
-        return right;
-    }
-
-
-    private boolean dfs(int[][] heights, boolean[][] visited, int row, int column, int lastHeight, int threshold) {
-        if (row < 0 || row >= heights.length || column < 0 || column >= heights[0].length ||
-                visited[row][column] || Math.abs(heights[row][column] - lastHeight) > threshold)
-            return false;
-
-        visited[row][column] = true;
-
-        return ((row == heights.length - 1 && column == heights[0].length - 1)
-                || dfs(heights, visited, row + 1, column, heights[row][column], threshold)
-                || dfs(heights, visited, row - 1, column, heights[row][column], threshold)
-                || dfs(heights, visited, row, column + 1, heights[row][column], threshold)
-                || dfs(heights, visited, row, column - 1, heights[row][column], threshold));
+        // If the destination is unreachable.
+        return 0;
     }
 }
