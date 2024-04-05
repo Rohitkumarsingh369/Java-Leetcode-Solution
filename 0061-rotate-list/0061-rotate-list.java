@@ -11,37 +11,27 @@
 class Solution {
     public ListNode rotateRight(ListNode head, int k) {
         
-        int length=0;
-        ListNode temp = head;
-        ListNode root = head;
+        if(head == null||head.next == null||k == 0) return head;
+        
+        ListNode temp=head;
+        int length=1;
 
-        while(temp!=null){ 
-            length++;
+        while(temp.next!=null){
+            ++length;
             temp=temp.next;
         }
 
+        temp.next=head;
 
-        if(k!=0 && length!=0  && k%length!=0) {
-            int rotation=(length)-(k>=length?k%length:k);
+        k=k%length;
+        int end=length-k;
 
-            ListNode prev=null;
-            while(rotation>0) {
-                prev=head;
-                head=head.next;
-                rotation--;
-            }
-            if(prev!=null) {
-                prev.next=null;
-                ListNode res=head;
-                while(res!=null) {
-                    if(res.next==null) {
-                        res.next=root;
-                        break;
-                    }
-                    res=res.next;
-                }
-            } 
+        while(end--!=0){
+            temp=temp.next;
         }
-        return head; 
+
+        head=temp.next;
+        temp.next=null;
+        return head;
     }
 }
