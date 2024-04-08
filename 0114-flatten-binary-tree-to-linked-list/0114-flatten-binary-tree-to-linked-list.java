@@ -18,25 +18,34 @@ class Solution {
         if(root==null)
             return;
             
-            
-            
-            if(root.left!=null){
-                
-                flatten(root.left);
-                
-                TreeNode temp=root.right;
-                root.right=root.left;
-                root.left=null;
-                
-                
-                TreeNode curr=root.right;
-                while(curr.right!=null)
-                    curr=curr.right;
-                
-                
-                curr.right=temp;
+          TreeNode originalRoot = root;
+
+        TreeNode curr=root;
+
+        while(curr!=null){
+
+            if(curr.left!=null){
+
+                TreeNode prev=curr.left;
+
+                while(prev.right!=null){
+
+                    prev=prev.right;
+
+                }
+
+                prev.right=curr.right;
+
+                curr.right=curr.left;
+
+                curr.left=null;
+
             }
-            
-            flatten(root.right);
+
+            curr=curr.right;
+
+        }
+
+       
     }
 }
