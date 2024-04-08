@@ -10,32 +10,26 @@
  */
 class Solution {
     public ListNode reverseBetween(ListNode head, int left, int right) {
-        //creating dummy node 
-        ListNode dummy=new ListNode(0);
-        dummy.next=head;
+        // Create a dummy node to handle edge cases where the reverse starts from the first node
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
 
-        ListNode leftprev=dummy;
-        ListNode currnode=head;
+        ListNode prev = dummy;
+        ListNode current = head;
 
-        for(int i=0;i<left-1;i++){
-            leftprev=leftprev.next;
-            currnode=currnode.next;
+        // Move prev and current pointers to the appropriate positions
+        for (int i = 1; i < left; i++) {
+            prev = prev.next;
+            current = current.next;
         }
 
-        ListNode sublisthead=currnode;
-
-        ListNode prevnode=null;
-        
-        for(int i=0;i<=right-left;i++){
-
-            ListNode nextnode=currnode.next;
-            currnode.next=prevnode;
-            prevnode=currnode;
-            currnode=nextnode;
+        // Reverse the sublist
+        for (int i = 0; i < right - left; i++) {
+            ListNode nextNode = current.next;
+            current.next = nextNode.next;
+            nextNode.next = prev.next;
+            prev.next = nextNode;
         }
-
-        leftprev.next=prevnode;
-        sublisthead.next=currnode;
 
         return dummy.next;
     }
