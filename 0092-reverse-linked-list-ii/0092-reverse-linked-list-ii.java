@@ -23,13 +23,17 @@ class Solution {
             current = current.next;
         }
 
+        ListNode subHead=current;
+        ListNode prevNode=null;
         // Reverse the sublist
-        for (int i = 0; i < right - left; i++) {
+        for (int i = 0; i <= right - left; i++) {
             ListNode nextNode = current.next;
-            current.next = nextNode.next;
-            nextNode.next = prev.next;
-            prev.next = nextNode;
+            current.next = prevNode;
+            prevNode = current;
+            current = nextNode;
         }
+        prev.next=prevNode;
+        subHead.next=current;
 
         return dummy.next;
     }
