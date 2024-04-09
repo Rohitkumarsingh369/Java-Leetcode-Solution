@@ -23,11 +23,11 @@ class Solution {
         while(current != null){
             if(current.val < x){
                 lessThan.next = current;
-                lessThan = current;
+                lessThan = lessThan.next;
                 current = current.next;
              }else{
                  greaterThan.next=current;
-                 greaterThan=current;
+                 greaterThan=greaterThan.next;
                 current= current.next;
                 greaterThan.next = null;
              }
