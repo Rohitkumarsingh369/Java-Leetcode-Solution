@@ -14,26 +14,45 @@
  * }
  */
 class Solution {
-    private TreeNode parentX, parentY;
-    private int depthX, depthY;
     
-    private void dfs(TreeNode node, int x, int y, int depth, TreeNode parent) {
-        if (node == null) return;
-        
-        if (node.val == x) {
-            parentX = parent;
-            depthX = depth;
-        } else if (node.val == y) {
-            parentY = parent;
-            depthY = depth;
-        }
-        
-        dfs(node.left, x, y, depth + 1, node);
-        dfs(node.right, x, y, depth + 1, node);
-    }
     
     public boolean isCousins(TreeNode root, int x, int y) {
-        dfs(root, x, y, 0, null);
-        return (depthX == depthY) && (parentX != parentY);
+        if (root == null) return false;
+        
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            boolean foundX = false, foundY = false;
+            
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                
+                // Check if x and y are children of the same parent
+                if (node.left != null && node.right != null) {
+                    if ((node.left.val == x && node.right.val == y) || 
+                        (node.left.val == y && node.right.val == x)) {
+                        return false; // Same parent, not cousins
+                    }
+                }
+                
+                // Check if we've found x or y
+                if (node.val == x) foundX = true;
+                if (node.val == y) foundY = true;
+                
+                // Add children to the queue for the next level
+                if (node.left != null) queue.offer(node.left);
+                if (node.right != null) queue.offer(node.right);
+            }
+            
+            // If both x and y are found at the same level, they are cousins
+            if (foundX && foundY) return true;
+            
+            // If only one of them is found, they can't be cousins
+            if (foundX || foundY) return false;
+        }
+        
+        return false;
     }
 }
