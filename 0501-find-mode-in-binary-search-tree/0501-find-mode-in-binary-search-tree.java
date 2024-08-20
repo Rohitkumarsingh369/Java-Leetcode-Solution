@@ -25,7 +25,11 @@ class Solution {
         inOrderTraversal(root);
 
         // Convert the list of modes to an array
-        return modes.stream().mapToInt(i -> i).toArray();
+        int result[]=new int[modes.size()];
+        for(int i=0;i<modes.size();i++){
+            result[i]=modes.get(i);
+        }
+        return result;
     }
     private void inOrderTraversal(TreeNode node) {
         if (node == null) return;
