@@ -15,7 +15,43 @@
  */
 class Solution {
     public boolean isBalanced(TreeNode root) {
-        return checkHeight(root)!=-1;
+       // return checkHeight(root)!=-1;
+        
+        //iterative 
+        if (root == null) return true;
+
+        // Stack to hold nodes for processing
+        Stack<TreeNode> stack = new Stack<>();
+        // Map to store the height of nodes
+        Map<TreeNode, Integer> heightMap = new HashMap<>();
+
+        TreeNode currentNode = root;
+        TreeNode lastVisited = null;
+
+        // Process all nodes
+        while (!stack.isEmpty() || currentNode != null) {
+            if (currentNode != null) {
+                stack.push(currentNode);
+                currentNode = currentNode.left;
+            } else {
+                TreeNode nodeOnTop = stack.peek();
+                if (nodeOnTop.right != null && lastVisited != nodeOnTop.right) {
+                    currentNode = nodeOnTop.right;
+                } else {
+                    stack.pop();
+                    int leftHeight = heightMap.getOrDefault(nodeOnTop.left, 0);
+                    int rightHeight = heightMap.getOrDefault(nodeOnTop.right, 0);
+
+                    if (Math.abs(leftHeight - rightHeight) > 1) {
+                        return false; // The tree is not balanced
+                    }
+
+                    heightMap.put(nodeOnTop, 1 + Math.max(leftHeight, rightHeight));
+                    lastVisited = nodeOnTop;
+                }
+            }
+        }
+        return true;
     }
     private int checkHeight(TreeNode root){
         if(root==null){
