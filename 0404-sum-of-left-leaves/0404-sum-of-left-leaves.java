@@ -15,28 +15,20 @@
  */
 class Solution {
     public int sumOfLeftLeaves(TreeNode root) {
-        
-        Stack<TreeNode> stack=new Stack<>();
-        
-        stack.push(root);
-        
-        int sum=0;
-
-        while(!stack.isEmpty()){
-            TreeNode current=stack.pop();
-            
-            if(current.left!=null){        
-                if(current.left.left==null && current.left.right==null)
-                    sum+=current.left.val;
-                
-                else
-                    stack.push(current.left);
-            }
-            if(current.right!=null){
-                stack.push(current.right);
-            }
+        return sumLeftLeaves(root, false);
+    }
+    private int sumLeftLeaves(TreeNode root,boolean isLeft){
+        if(root==null){
+            return 0;
         }
         
-        return sum;
+        if(root.left==null && root.right==null && isLeft){
+            return root.val;
+        }
+        
+        int leftSum=sumLeftLeaves(root.left, true);
+        int rightSum=sumLeftLeaves(root.right, false);
+        
+        return leftSum+rightSum;
     }
 }
