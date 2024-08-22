@@ -22,12 +22,13 @@ class Solution {
         return low;
     }
     
-    private int sumOfDivisor(int arr[],int day){
+    private int sumOfDivisor(int arr[],int div){
         int length=arr.length;
         int sum=0;
         
         for(int i=0;i<length;i++){
-            sum+=Math.ceil((double)arr[i]/(double)day);
+            //sum+=Math.ceil((double)arr[i]/(double)div);
+            sum+=(arr[i]+div-1)/div;
         }
         return sum;
     }
