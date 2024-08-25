@@ -47,9 +47,9 @@ class Solution {
         
         // Initialize the first row of dp
         for (int i = 1; i < col; i++) {
-            dp[i] = (obstacleGrid[0][i] == 0) ? dp[i - 1] : 0;
+            dp[i] = (obstacleGrid[0][i] == 0) ? dp[i - 1] : 0;     
         }
-
+       
         for (int i = 1; i < row; i++) {
             for (int j = 0; j < col; j++) {
                 if (obstacleGrid[i][j] == 1) {
