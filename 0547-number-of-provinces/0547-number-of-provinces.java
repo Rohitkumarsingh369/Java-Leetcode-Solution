@@ -1,40 +1,27 @@
 class Solution {
     public int findCircleNum(int[][] isConnected) {
-        ArrayList<ArrayList<Integer>> adjLs=new ArrayList<ArrayList<Integer>>();
-        
-        int length=isConnected.length;
-        
-        for(int i=0;i<length;i++){
-            adjLs.add(new ArrayList<Integer>());
-        }
-        for(int i=0;i<length;i++){
-            for(int j=0;j<length;j++){
-                if(isConnected[i][j]==1 && i!=j){
-                    adjLs.get(i).add(j);
-                    adjLs.get(j).add(i);
-                }
+        int n = isConnected.length;
+        boolean[] visited = new boolean[n];
+        int provinceCount = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (!visited[i]) {
+                // If the city i is not visited, it starts a new province
+                dfs(isConnected, visited, i);
+                provinceCount++;
             }
         }
-        
-        int visited[]=new int[length];
-        
-        int count=0;
-        for(int i=0;i<length;i++){
-            if(visited[i]==0){
-                count++;
-                dfs(i,adjLs,visited);
-            }
-        }
-        
-        return count;
+
+        return provinceCount;
     }
 
-    private void dfs(int vertex,ArrayList<ArrayList<Integer>> adjLs,int visited[]){
-        visited[vertex]=1;
-        
-        for(Integer it:adjLs.get(vertex)){
-            if(visited[it]==0){
-                dfs(it,adjLs,visited);
+    private void dfs(int[][] isConnected, boolean[] visited, int i) {
+        visited[i] = true;
+
+        for (int j = 0; j < isConnected.length; j++) {
+            if (isConnected[i][j] == 1 && !visited[j]) {
+                // If there is a direct connection and the city j is not visited
+                dfs(isConnected, visited, j);
             }
         }
     }
