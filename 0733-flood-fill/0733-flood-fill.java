@@ -1,29 +1,34 @@
 class Solution {
     public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
-        int iniColor=image[sr][sc];
-        int ans[][]=image;
+        int oldColor = image[sr][sc];
+        if (oldColor == newColor) return image; // No need to proceed if colors are the same
 
-        int delRow[]=new int[]{-1,0,1,0};
-        int delCol[]=new int[]{0,1,0,-1};
+        int rows = image.length, cols = image[0].length;
+        Queue<int[]> queue = new LinkedList<>();
+        queue.offer(new int[]{sr, sc});
 
-        dfs(sr,sc,image,ans,iniColor,newColor,delRow,delCol);
+        image[sr][sc] = newColor; // Start filling with new color
 
-        return ans;
-    }
-    
-    private  void dfs(int row,int col,int[][]image,int [][]ans,int iniColor,int newColor,int []delRow,int []delCol){
-        ans[row][col]=newColor;
-        int n=image.length;
-        int m=image[0].length;
+        // Direction vectors for moving up, down, left, right
+        int[][] directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 
-        for(int i=0;i<4;i++){
-            int nRow=row+delRow[i];
-            int nCol=col+delCol[i];
+        while (!queue.isEmpty()) {
+            int[] pixel = queue.poll();
+            int r = pixel[0], c = pixel[1];
 
-            if(nRow>=0 && nRow<n && nCol>=0 && nCol<m &&
-                image[nRow][nCol]==iniColor && ans[nRow][nCol]!=newColor){
-                    dfs(nRow,nCol,image,ans,iniColor,newColor,delRow,delCol);
+            // Check all 4 directions
+            for (int[] direction : directions) {
+                int nr = r + direction[0];
+                int nc = c + direction[1];
+
+                // Proceed if within bounds and matches old color
+                if (nr >= 0 && nr < rows && nc >= 0 && nc < cols && image[nr][nc] == oldColor) {
+                    queue.offer(new int[]{nr, nc});
+                    image[nr][nc] = newColor; // Fill with new color
                 }
+            }
         }
+
+        return image;
     }
 }
