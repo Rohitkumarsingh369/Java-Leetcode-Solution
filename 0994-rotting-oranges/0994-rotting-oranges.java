@@ -1,60 +1,56 @@
 class Solution {
     public int orangesRotting(int[][] grid) {
-        if(grid==null || grid.length==0){
-            return 0;
-        }
+        if (grid == null || grid.length == 0) return -1;
         
-        int rows=grid.length;
-        int cols=grid[0].length;
-        
-        int count_fresh=0;
-        
-        
-        Queue<int []> queue=new LinkedList<>();
-        for(int i=0;i<rows;i++){
-            for(int j=0;j<cols;j++){
-                if(grid[i][j]==2){
-                    queue.offer(new int[]{i,j});
-                }
-                if(grid[i][j]==1){
-                    count_fresh++;
+        int rows = grid.length;
+        int cols = grid[0].length;
+        Queue<int[]> queue = new LinkedList<>();
+        int freshCount = 0;
+
+        // Initialize the queue with all rotten oranges
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (grid[i][j] == 2) {
+                    queue.offer(new int[]{i, j});
+                } else if (grid[i][j] == 1) {
+                    freshCount++;
                 }
             }
         }
-        //System.out.println(count_fresh);
-        if(count_fresh==0){
-            return 0;
-        }
+
+        if (freshCount == 0) return 0;  // No fresh oranges, no time needed
+
+        int minutes = 0;
+        int[][] directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
         
-        int dx[]={0,0,1,-1};
-        int dy[]={1,-1,0,0};
-        
-        int count_min=0,count=0;
-        
-        while(!queue.isEmpty()){
-            int size=queue.size();
-           // count+=size;
+        // BFS to spread the rot
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            boolean rottenSpread = false;
             
-            for(int i=0;i<size;i++){
-                int point[]=queue.poll();
+            for (int i = 0; i < size; i++) {
+                int[] orange = queue.poll();
+                int x = orange[0], y = orange[1];
                 
-                for(int j=0;j<4;j++){
-                    int x=point[0]+dx[j];
-                    int y=point[1]+dy[j];
+                for (int[] direction : directions) {
+                    int nx = x + direction[0];
+                    int ny = y + direction[1];
                     
-                    if(x<0||y<0||x>=rows||y>=cols||grid[x][y]==2||grid[x][y]==0)
-                        continue;
-                    
-                    grid[x][y]=2;
-                    queue.offer(new int[]{x,y});
-                    count_fresh--;
+                    if (nx >= 0 && nx < rows && ny >= 0 && ny < cols && grid[nx][ny] == 1) {
+                        grid[nx][ny] = 2;  // Rot the fresh orange
+                        queue.offer(new int[]{nx, ny});
+                        freshCount--;
+                        rottenSpread = true;
+                    }
                 }
             }
-            if(queue.size()!=0){
-                count_min++;
+            
+            if (rottenSpread) {
+                minutes++;
             }
         }
         
-        return count_fresh==0?count_min:-1;
+        return freshCount == 0 ? minutes : -1;
     }
+
 }
