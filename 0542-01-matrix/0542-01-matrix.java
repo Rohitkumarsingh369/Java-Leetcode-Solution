@@ -1,23 +1,45 @@
 class Solution {
-    int[] DIR = new int[]{0, 1, 0, -1, 0};
-    public int[][] updateMatrix(int[][] mat) {
-        int m = mat.length, n = mat[0].length; // The distance of cells is up to (M+N)
-        Queue<int[]> q = new ArrayDeque<>();
-        for (int r = 0; r < m; ++r)
-            for (int c = 0; c < n; ++c)
-                if (mat[r][c] == 0) q.offer(new int[]{r, c});
-                else mat[r][c] = -1; // Marked as not processed yet!
+    private static final int[] rowDir = {-1, 1, 0, 0};
+    private static final int[] colDir = {0, 0, -1, 1};
+    public int[][] updateMatrix(int[][] grid) {
+        int n = grid.length;
+        int m = grid[0].length;
+        int[][] distance = new int[n][m];
+        Queue<int[]> queue = new LinkedList<>();
 
-        while (!q.isEmpty()) {
-            int[] curr = q.poll();
-            int r = curr[0], c = curr[1];
-            for (int i = 0; i < 4; ++i) {
-                int nr = r + DIR[i], nc = c + DIR[i+1];
-                if (nr < 0 || nr == m || nc < 0 || nc == n || mat[nr][nc] != -1) continue;
-                mat[nr][nc] = mat[r][c] + 1;
-                q.offer(new int[]{nr, nc});
+        // Initialize the distance matrix with a large value and enqueue all '1' cells
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (grid[i][j] == 0) {
+                    queue.offer(new int[]{i, j});
+                    distance[i][j] = 0; // Distance for cells with '1' is 0
+                } else {
+                    distance[i][j] = Integer.MAX_VALUE; // Initially, set all distances to a large value
+                }
             }
         }
-        return mat;
+
+        // Perform BFS from all '1' cells
+        while (!queue.isEmpty()) {
+            int[] current = queue.poll();
+            int row = current[0];
+            int col = current[1];
+
+            // Explore the 4 neighboring cells
+            for (int k = 0; k < 4; k++) {
+                int newRow = row + rowDir[k];
+                int newCol = col + colDir[k];
+
+                // Check if the new position is within bounds and if a shorter distance can be found
+                if (newRow >= 0 && newRow < n && newCol >= 0 && newCol < m) {
+                    if (distance[newRow][newCol] > distance[row][col] + 1) {
+                        distance[newRow][newCol] = distance[row][col] + 1;
+                        queue.offer(new int[]{newRow, newCol});
+                    }
+                }
+            }
+        }
+
+        return distance;
     }
 }
