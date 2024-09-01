@@ -10,22 +10,31 @@
  */
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
-        ListNode temp=new ListNode(-1);
-        PriorityQueue<ListNode> queue = new PriorityQueue<>((o1,o2)->o1.val-o2.val);
-        for(ListNode node:lists) {
-            if(node!=null) {
-                queue.add(node);                
-            }
+        if(lists==null  ||  lists.length==0){
+            return null;
         }
-        ListNode dummy = temp;
-        while(!queue.isEmpty()) {
-            temp.next=queue.poll();
-            temp=temp.next;
-            if(temp.next!=null) {
-                queue.add(temp.next);
+        
+        PriorityQueue<ListNode> minHeap = new PriorityQueue<>((a, b) -> a.val - b.val);
+        
+        for(ListNode list:lists){
+            if(list!=null){
+                minHeap.offer(list);
             }
         }
         
+        ListNode dummy=new ListNode(0);
+        
+        ListNode current=dummy;
+        
+        while(!minHeap.isEmpty()){
+            ListNode minNode=minHeap.poll();
+            current.next=minNode;
+            current=current.next;
+            
+            if(minNode.next!=null){
+                minHeap.offer(minNode.next);
+            }
+        }
         return dummy.next;
     }
 }
