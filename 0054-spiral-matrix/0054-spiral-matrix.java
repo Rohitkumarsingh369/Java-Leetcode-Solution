@@ -15,6 +15,7 @@ class Solution {
         // Traverse the matrix
         while (top <= bottom && left <= right) {
             // Traverse from left to right along the top row
+            System.out.print(top+"f");
             for (int i = left; i <= right; i++) {
                 result.add(matrix[top][i]);
             }
