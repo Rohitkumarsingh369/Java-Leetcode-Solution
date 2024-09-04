@@ -10,6 +10,7 @@ class Solution {
             if(nums[mid]==target){
                 return true;
             }
+            
             //trim the array to remove the duplicate
             if(nums[low]==nums[mid] && nums[mid]==nums[high]){
                 low=low+1;
