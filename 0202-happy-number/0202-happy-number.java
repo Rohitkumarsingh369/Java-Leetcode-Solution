@@ -1,28 +1,22 @@
 class Solution {
     public boolean isHappy(int n) {
-        int a=n,d,rev;
-         
-        while(a>0)
-        {
-            int a1=a;
-            rev=0;
-            d=0;
-            if (a1 == 1 || a1 == 7) {  
-         return true;
-         } else if (a1 <= 9) {
-               return false;
+        HashSet<Integer> seen = new HashSet<>();
+        
+        while (n != 1 && !seen.contains(n)) {
+            seen.add(n);
+            n = sumOfSquaresOfDigits(n);
         }
-            while(a1>0){
-                d=a1%10;
-                rev=rev+(d*d);
-                a1=a1/10;
-            }
-            
-            if(rev==1)
-                return true;
-           
-                a=rev;
+        
+        return n == 1;
+    }
+
+    private int sumOfSquaresOfDigits(int num) {
+        int sum = 0;
+        while (num > 0) {
+            int digit = num % 10;
+            sum += digit * digit;
+            num /= 10;
         }
-        return false;
+        return sum;
     }
 }
