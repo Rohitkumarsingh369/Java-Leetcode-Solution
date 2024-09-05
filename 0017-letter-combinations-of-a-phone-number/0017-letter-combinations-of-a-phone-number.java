@@ -1,51 +1,40 @@
-class Solution 
-{
-    List<String> result = new ArrayList<>();
-    String mapping[]={"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
-    
-    /*public List<String> letterCombinations(String digits) 
-    {
-        if(digits.equals(""))
-            return a;
-        func(0,new StringBuilder(""),digits);
-        return a;
-    }
-    
-    void func(int index,StringBuilder s,String digits)
-    {
-        if(s.length()==digits.length())
-        {
-            a.add(new String(s));
-            return;
-        }
-        int a = digits.charAt(index) - '0';
-        for(int i=0;i<arr[a].length();i++)
-        {
-            s.append((arr[a].charAt(i)));
-            func(index+1,s,digits);
-            s.deleteCharAt(s.length()-1);
-        }
-    }*/
+class Solution {
+    // Array to map digits to their corresponding letters
+    private static final String[] PHONE_LETTERS = {
+        "",    // 0
+        "",    // 1
+        "abc", // 2
+        "def", // 3
+        "ghi", // 4
+        "jkl", // 5
+        "mno", // 6
+        "pqrs",// 7
+        "tuv", // 8
+        "wxyz" // 9
+    };
+
     public List<String> letterCombinations(String digits) {
-        
-        if(digits.length()==0)
+        List<String> result = new ArrayList<>();
+        if (digits == null || digits.length() == 0) {
             return result;
-        dfs(0,digits,new StringBuilder());
+        }
+        backtrack(result, new StringBuilder(), digits, 0);
         return result;
     }
-    
-    void dfs(int length,String digits, StringBuilder temp){
-        if(length==digits.length()){
-            result.add(temp.toString());
+
+    private void backtrack(List<String> result, StringBuilder current, String digits, int index) {
+        // Base case: if the current combination is complete
+        if (index == digits.length()) {
+            result.add(current.toString());
             return;
         }
         
-        char ch=digits.charAt(length);
-        String str=mapping[ch-'0'];
-        for(char c:str.toCharArray()){
-            temp.append(c);
-            dfs(length+1,digits,temp);
-            temp.deleteCharAt(temp.length()-1);
+        // Get the letters corresponding to the current digit
+        String letters = PHONE_LETTERS[digits.charAt(index) - '0'];
+        for (char letter : letters.toCharArray()) {
+            current.append(letter);
+            backtrack(result, current, digits, index + 1);
+            current.deleteCharAt(current.length() - 1); // Backtrack
         }
     }
 }
