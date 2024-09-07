@@ -29,7 +29,8 @@ class Solution {
             case "-": return a - b;
             case "*": return a * b;
             case "/": return a / b;
-            default: throw new IllegalArgumentException("Invalid operator: " + operator);
+            //default: throw new IllegalArgumentException("Invalid operator: " + operator);
         }  
+        return 0;
     }
 }
