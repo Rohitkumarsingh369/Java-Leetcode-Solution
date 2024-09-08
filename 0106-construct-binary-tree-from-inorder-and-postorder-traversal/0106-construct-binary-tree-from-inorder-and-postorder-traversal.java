@@ -14,26 +14,45 @@
  * }
  */
 class Solution {
-    public TreeNode buildTree(int[] in, int[] post) {
-        return tree(in,0,in.length-1,post,0,post.length-1);
+    public static TreeNode buildTree(int[] inorder, int[] postorder) {
+        // Create a map to store value to index mappings for inorder traversal
+        Map<Integer, Integer> inorderIndexMap = new HashMap<>();
+        for (int i = 0; i < inorder.length; i++) {
+            inorderIndexMap.put(inorder[i], i);
+        }
+        
+        return buildTreeHelper(inorder, 0, inorder.length - 1, 
+                               postorder, 0, postorder.length - 1, 
+                               inorderIndexMap);
     }
-   public TreeNode tree(int in[],int instart,int inend,int post[],int poststart,int postend) {
-		if(poststart>postend || instart>inend)
-			return null;
-		
-		TreeNode root=new TreeNode(post[postend]);
-		
-		int index=0;
-		for(int i=instart;i<=inend;i++) {
-			if(in[i]==root.val)
-				index=i;
-		}
-		//TreeNode root=new TreeNode(in[index]);
-		/*if(instart==inend)
-			return root;*/
-		
-		root.left=tree(in,instart,index-1,post,poststart,poststart+index-1-instart);
-		root.right=tree(in,index+1,inend,post,poststart+index-instart,postend-1);
-		return root;
-	}
+
+    // Helper function to construct the tree
+    private static TreeNode buildTreeHelper(int[] inorder, int inorderStart, int inorderEnd,
+                                            int[] postorder, int postorderStart, int postorderEnd,
+                                            Map<Integer, Integer> inorderIndexMap) {
+        if (inorderStart > inorderEnd || postorderStart > postorderEnd) {
+            return null;
+        }
+
+        // The last element in postorder is the root
+        int rootValue = postorder[postorderEnd];
+        TreeNode root = new TreeNode(rootValue);
+
+        // Find the root index in inorder traversal
+        int rootIndexInOrder = inorderIndexMap.get(rootValue);
+
+        // Number of nodes in the right subtree
+        int rightTreeSize = inorderEnd - rootIndexInOrder;
+
+        // Recursively build the left and right subtrees
+        root.left = buildTreeHelper(inorder, inorderStart, rootIndexInOrder - 1,
+                                    postorder, postorderStart, postorderEnd - rightTreeSize - 1,
+                                    inorderIndexMap);
+        root.right = buildTreeHelper(inorder, rootIndexInOrder + 1, inorderEnd,
+                                     postorder, postorderEnd - rightTreeSize, postorderEnd - 1,
+                                     inorderIndexMap);
+
+        return root;
+    }
+
 }
