@@ -1,11 +1,18 @@
 class Solution {
     public boolean canJump(int[] nums) {
-        int maxLocation = 0;
-        for(int i=0; i<nums.length; i++) {
-            if(maxLocation<i)
-                return false; // if previous maxLocation smaller than i, meaning we cannot reach location i, thus return false.
-            maxLocation = Math.max( i+nums[i] , maxLocation); // greedy:
+        int farthest = 0;
+
+        // Traverse each index of the array
+        for (int i = 0; i < nums.length; i++) {
+            if (i > farthest) {
+                // If current index is beyond the farthest reachable index, return false
+                return false;
+            }
+            // Update the farthest reachable index
+            farthest = Math.max(farthest, i + nums[i]);
         }
+
+        // If the loop completes, it means we can reach the last index
         return true;
     }
 }
