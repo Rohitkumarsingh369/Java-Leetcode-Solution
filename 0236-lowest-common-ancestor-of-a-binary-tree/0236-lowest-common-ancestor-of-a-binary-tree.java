@@ -8,24 +8,23 @@
  * }
  */
 class Solution {
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode n1, TreeNode n2) {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         
-        if(root==null ||root==n1 || root==n2)
-	    return  root;
-	    
-	  
-	    
-	    TreeNode leftLca=lowestCommonAncestor(root.left,n1,n2);
-	    TreeNode rightLca=lowestCommonAncestor(root.right,n1,n2);
-	    
-	   if(leftLca==null){
-           return rightLca;
-       }
-        else if(rightLca==null){
-            return leftLca;
-        }
-        else{
+        // Base case: if root is null or root is one of p or q
+        if (root == null || root == p || root == q) {
             return root;
         }
+
+        // Recursively find LCA in left and right subtrees
+        TreeNode leftLCA = lowestCommonAncestor(root.left, p, q);
+        TreeNode rightLCA = lowestCommonAncestor(root.right, p, q);
+
+        // If both leftLCA and rightLCA are non-null, p and q are found in different subtrees
+        if (leftLCA != null && rightLCA != null) {
+            return root;
+        }
+
+        // If only one of leftLCA or rightLCA is non-null, return that one
+        return (leftLCA != null) ? leftLCA : rightLCA;
     }
 }
