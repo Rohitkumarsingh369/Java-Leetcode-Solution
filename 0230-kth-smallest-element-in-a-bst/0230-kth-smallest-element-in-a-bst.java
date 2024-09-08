@@ -14,26 +14,23 @@
  * }
  */
 class Solution {
-     int count = 0;
-    int result = 0;
-
+    private int count = 0;   // Counter to track the number of visited nodes
+    private int result = -1; // To store the k-th smallest value
+    
     public int kthSmallest(TreeNode root, int k) {
         inOrderTraversal(root, k);
         return result;
     }
 
+    // In-order traversal to find the k-th smallest element
     private void inOrderTraversal(TreeNode node, int k) {
-        if (node == null) {
-            return;
-        }
+        if (node == null) return;
 
         // Traverse the left subtree
         inOrderTraversal(node.left, k);
 
-        // Increment count for the current node
+        // Increment count and check if we've found the k-th smallest
         count++;
-
-        // If we have reached the Kth smallest element, set the result
         if (count == k) {
             result = node.val;
             return;
