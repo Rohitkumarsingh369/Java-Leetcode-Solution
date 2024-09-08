@@ -21,6 +21,13 @@ class Solution {
             }
         }
 
-        return mergedList.toArray(new int[mergedList.size()][]);
+        // Convert List<int[]> to int[][]
+        int size = mergedList.size();
+        int[][] result = new int[size][2];
+        for (int i = 0; i < size; i++) {
+            result[i] = mergedList.get(i);
+        }
+        
+        return result;
     }
 }
