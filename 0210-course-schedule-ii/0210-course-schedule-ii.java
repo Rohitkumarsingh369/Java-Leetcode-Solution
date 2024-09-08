@@ -40,9 +40,16 @@ class Solution {
             }
         }
 
+       // System.out.println("course "+courseOrder);
         // Step 6: If all courses were processed, return the order; otherwise, return an empty array
         if (courseOrder.size() == numCourses) {
-            return courseOrder.stream().mapToInt(i -> i).toArray();  // Convert list to array
+            int result[]=new int[courseOrder.size()];
+            
+            for(int i=0;i<courseOrder.size();i++){
+                result[i]=courseOrder.get(i);
+            }
+            return result;
+            
         } else {
             return new int[0];  // Return empty array if cycle is detected
         } 
