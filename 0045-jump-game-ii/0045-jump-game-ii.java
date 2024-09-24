@@ -7,7 +7,7 @@ class Solution {
         int currentEnd = 0;
         int farthest = 0;
 
-        for (int i = 0; i < n - 1; i++) {
+        for (int i = 0; i < n ; i++) {
             farthest = Math.max(farthest, i + nums[i]);
 
             if (i == currentEnd) {
