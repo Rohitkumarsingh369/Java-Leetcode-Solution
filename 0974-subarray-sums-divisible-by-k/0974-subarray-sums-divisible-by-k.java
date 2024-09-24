@@ -1,24 +1,36 @@
 class Solution {
-    public int subarraysDivByK(int[] a, int k) {
-       int mod[]=new int[k];
-        Arrays.fill(mod,0);
+    public int subarraysDivByK(int[] nums, int k) {
+       // HashMap to store the frequency of prefix sum remainders
+        HashMap<Integer, Integer> remainderFrequency = new HashMap<>();
         
-        int cumsum=0;
-        int n=a.length;
-        for(int i=0;i<n;i++){
-            cumsum+=a[i];
-            mod[((cumsum%k)+k)%k]++;
-        }
-        int result=0;
-        for(int i=0;i<k;i++){
-            if(mod[i]>1)
-            result+=(mod[i]*(mod[i]-1))/2;
-        }
-        result+=mod[0];
+        // Initial case: remainder 0 has occurred once (to count subarrays starting from the beginning)
+        remainderFrequency.put(0, 1);
         
-        /*for(int i=0;i<k;i++){
-            System.out.print(mod[i]+" ");
-        }*/
-        return result;
+        int prefixSum = 0;
+        int count = 0;
+        
+        // Traverse through the array
+        for (int num : nums) {
+            // Calculate the current prefix sum
+            prefixSum += num;
+            
+            // Calculate the remainder of the current prefix sum with k
+            int remainder = prefixSum % k;
+            
+            // If the remainder is negative, convert it to a positive equivalent in the range [0, k-1]
+            if (remainder < 0) {
+                remainder += k;
+            }
+            
+            // Check how many times this remainder has occurred before
+            if (remainderFrequency.containsKey(remainder)) {
+                count += remainderFrequency.get(remainder);
+            }
+            
+            // Update the frequency of this remainder
+            remainderFrequency.put(remainder, remainderFrequency.getOrDefault(remainder, 0) + 1);
+        }
+        
+        return count;
     }
 }
