@@ -1,7 +1,7 @@
 class Solution {
     public String minWindow(String s, String t) {
-        
-     if (s == null || t == null || s.length() < t.length()) {
+      // Edge case: if t is longer than s, it's impossible to find a window
+        if (s.length() < t.length()) {
             return "";
         }
 
@@ -13,20 +13,17 @@ class Solution {
 
         // Step 2: Initialize sliding window variables
         int left = 0, right = 0;
-        int minLength = Integer.MAX_VALUE;
-        int minLeft = 0;
-        int required = tCount.size(); // Number of unique characters in t to match
-        int formed = 0; // To track how many characters have been matched
-
-        // A map to keep the character count of the current window
-        Map<Character, Integer> windowCount = new HashMap<>();
+        int minLeft = 0, minLength = Integer.MAX_VALUE;
+        int required = tCount.size();  // Number of unique characters in t that need to be matched
+        int formed = 0;  // Tracks how many unique characters are fully matched in the window
+        Map<Character, Integer> windowCount = new HashMap<>();  // Window character count
 
         // Step 3: Expand the window by moving the right pointer
         while (right < s.length()) {
             char c = s.charAt(right);
             windowCount.put(c, windowCount.getOrDefault(c, 0) + 1);
 
-            // If the current character's count matches the count in t, increment `formed`
+            // If the character in the window matches the count in t, increase 'formed'
             if (tCount.containsKey(c) && windowCount.get(c).intValue() == tCount.get(c).intValue()) {
                 formed++;
             }
@@ -35,16 +32,16 @@ class Solution {
             while (left <= right && formed == required) {
                 char startChar = s.charAt(left);
 
-                // Update the minimum window
+                // Update the result if this window is smaller
                 if (right - left + 1 < minLength) {
-                    minLength = right - left + 1;
                     minLeft = left;
+                    minLength = right - left + 1;
                 }
 
                 // Remove the character at the left pointer from the window
                 windowCount.put(startChar, windowCount.get(startChar) - 1);
 
-                // If removing the left character makes the window invalid, decrement `formed`
+                // If removing the left character makes the window invalid, decrease 'formed'
                 if (tCount.containsKey(startChar) && windowCount.get(startChar).intValue() < tCount.get(startChar).intValue()) {
                     formed--;
                 }
@@ -60,4 +57,6 @@ class Solution {
         // Step 5: Return the result
         return minLength == Integer.MAX_VALUE ? "" : s.substring(minLeft, minLeft + minLength);
     }
+  
+    
 }
