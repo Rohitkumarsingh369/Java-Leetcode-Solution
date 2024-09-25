@@ -1,47 +1,41 @@
 class Solution {
-    static final int max=256;
-
-    static boolean compare(char arr1[],char arr2[]){
+    public List<Integer> findAnagrams(String s, String p) {
+         List<Integer> result = new ArrayList<>();
         
-        for(int i=0;i<max;i++){
-            if(arr1[i]!=arr2[i])
-                return false;
+        int[] pCount = new int[26]; // Frequency count for string p
+        int[] sCount = new int[26]; // Frequency count for the current window in s
+        
+        // Fill pCount with the frequencies of characters in p
+        for (char c : p.toCharArray()) {
+            pCount[c - 'a']++;
         }
         
-        return true;
-    }
-    
-    public List<Integer> findAnagrams(String txt, String pat) {
+        int pLength = p.length();
         
-        List<Integer> list=new ArrayList<>();
-        int M=pat.length();
-        int N=txt.length();
-        
-        
-        if(M>N)
-            return list;
-        char countp[]=new char[max];
-        char counttw[]=new char[max];
-        
-        int count=0;
-        
-        for(int i=0;i<M;i++){
-            (countp[pat.charAt(i)])++;
-            (counttw[txt.charAt(i)])++;
-        }
-        
-        for(int i=M;i<N;i++){
-            if(compare(countp,counttw))
-                list.add(i-M);
-                
-            (counttw[txt.charAt(i)])++;
+        // Traverse through s with a sliding window
+        for (int i = 0; i < s.length(); i++) {
+            // Add the current character to the sCount
+            sCount[s.charAt(i) - 'a']++;
             
-            (counttw[txt.charAt(i-M)])--;
+            // Remove the character that is left behind in the sliding window
+            if (i >= pLength) {
+                sCount[s.charAt(i - pLength) - 'a']--;
+            }
+            
+            // Compare the two counts
+            if (i >= pLength - 1 && compareCounts(pCount, sCount)) {
+                result.add(i - pLength + 1); // Start index of the anagram
+            }
         }
-        if(compare(countp,counttw))
-                list.add(N-M);
-                
-                
-        return list;
+        
+        return result;
+    }
+    private boolean compareCounts(int[] count1, int[] count2) {
+        for (int i = 0; i < 26; i++) {
+            if (count1[i] != count2[i]) {
+                return false;
+            }
+        }
+        return true;
     }
 }
