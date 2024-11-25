@@ -1,36 +1,26 @@
 class Solution {
-    public int singleNonDuplicate(int[] num) {
-        
-        /*int result=0;
-        for(int i=0;i<nums.length;i++){
-            result=result^nums[i];
+    public int singleNonDuplicate(int[] nums) {
+        int low = 0, high = nums.length - 1;
+
+        while (low < high) {
+            int mid = low + (high - low) / 2;
+
+            // Ensure mid is even to check pairs correctly
+            if (mid % 2 == 1) {
+                mid--; // Move mid to the start of the pair
+            }
+
+            // Compare mid and mid + 1
+            if (nums[mid] == nums[mid + 1]) {
+                // Single element is in the right half
+                low = mid + 2;
+            } else {
+                // Single element is in the left half
+                high = mid;
+            }
         }
-        return result;*/
-        
-        int len=num.length;
-        
-        if(len==1)
-            return num[0];
-        
-        if(num[0]!=num[1])
-            return num[0];
-        
-        if(num[len-1]!=num[len-2])
-            return num[len-1];
-        
-        int low=1,high=len-2;
-        
-        while(low<=high){
-            int mid=low+(high-low)/2;
-            
-            if(num[mid]!=num[mid+1] && num[mid]!=num[mid-1])
-                return num[mid];
-            
-            if((mid%2==1 && num[mid]==num[mid-1])||(mid%2==0 && num[mid]==num[mid+1]))
-                low=mid+1;
-            else
-                high=mid-1;
-        }
-        return -1;   
+
+        // low will eventually point to the single element
+        return nums[low];
     }
 }
