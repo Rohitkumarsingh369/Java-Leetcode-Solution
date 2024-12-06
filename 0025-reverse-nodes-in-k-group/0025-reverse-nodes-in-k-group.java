@@ -26,6 +26,7 @@ class Solution {
             kthNode.next=null;
 
             reverseList(temp);
+          
             if(temp==head){
                 head=kthNode;
             }
